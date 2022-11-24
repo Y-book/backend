@@ -9,10 +9,6 @@ import usersRouter from './routes/users';
 
 let app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, '../', 'views'));
-app.set('view engine', 'hbs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,7 +31,7 @@ app.use(function(err: HttpError, req: Request, res: Response, next: NextFunction
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 export default app;
