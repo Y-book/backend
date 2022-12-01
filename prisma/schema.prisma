@@ -119,6 +119,7 @@ model ConversationMessage {
   from           User           @relation(fields: [userId], references: [id])
   userId         Int
   notification   Notification[]
+  content        String
 }
 
 model Notification {
