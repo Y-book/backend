@@ -43,6 +43,7 @@ model User {
   conversationsSent     Conversation[]        @relation("ConversationsSent")
   conversationsReceived Conversation[]        @relation("ConversationsReceived")
   conversationMessages  ConversationMessage[]
+  config                Json?
 }
 
 model Post {
