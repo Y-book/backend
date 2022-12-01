@@ -33,6 +33,7 @@ model User {
   email                 String                @unique
   avatarS3Key           String                @db.VarChar(255)
   coverPicS3Key         String                @db.VarChar(255)
+  config                Json?
   Posts                 Post[]
   PostLikes             PostLike[]
   PostComment           PostComment[]
