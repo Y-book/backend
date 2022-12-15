@@ -7,7 +7,10 @@
   },
   "dependencies": {
     "@prisma/client": "^4.6.1",
+<<<<<<< HEAD
     "aws-sdk": "^2.1265.0",
+=======
+>>>>>>> origin
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",

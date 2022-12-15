@@ -1,11 +1,9 @@
-import { Response, Request, NextFunction, Router } from "express"
-
+import express, { Response, Request, NextFunction, Router } from "express"
 import createError from "http-errors"
-import express from "express"
 import path from "path"
 import cookieParser from "cookie-parser"
 import logger from "morgan";
-import UserRouter from "./routes/User"
+import UserRouter from "./routes/user-routes"
 
 
 const app = express();
