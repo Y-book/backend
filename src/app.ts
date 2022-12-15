@@ -5,7 +5,7 @@ import express from "express"
 import path from "path"
 import cookieParser from "cookie-parser"
 import logger from "morgan";
-import UserRouter from "./routes/User"
+import UserRouter from "./routes/user-routes"
 
 
 const app = express();
