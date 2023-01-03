@@ -6,8 +6,12 @@ const createUser = async (req: Request, res: Response) => {
     let returnedResponse: any;
     let requestBody = req.body;
 
-    returnedResponse = await userService.createUser(requestBody);
-
+    try {
+        returnedResponse = await userService.createUser(requestBody);
+    } 
+    catch (error) {
+        throw error;
+    }
     res.status(201).send(returnedResponse);
 }
 
@@ -16,8 +20,13 @@ const createUser = async (req: Request, res: Response) => {
 const getUsers = async (req: Request, res: Response) => {
 
     let returnedResponse: any;
-    returnedResponse = await userService.getUsers();
 
+    try {
+        returnedResponse = await userService.getUsers();
+    }
+    catch (error) {
+        throw error;
+    }
     res.status(200).send(returnedResponse);
 }
 
@@ -27,7 +36,12 @@ const updateUser = async (req: Request, res: Response) => {
 
     let returnedResponse: any;
 
-    returnedResponse = await userService.updateUser(req);
+    try {
+        returnedResponse = await userService.updateUser(req);
+    }
+    catch (error) {
+        throw error;
+    }
 
     res.status(200).send(returnedResponse);
 }
@@ -38,8 +52,13 @@ const deleteUser = async (req: Request, res: Response) => {
 
     let returnedResponse: any;
 
-    returnedResponse = await userService.deleteUser(req);
-
+    try {
+        returnedResponse = await userService.deleteUser(req);
+    }
+    catch (error) {
+        throw error;
+    }
+    
     res.status(200).send(returnedResponse);
 }
 
