@@ -42,6 +42,30 @@ const getUsers = async () => {
 
 /********************************************************************************/
 
+const getUserById = async (receivedRequest: any) => {
+
+    let foundUser: any;
+
+    try {
+        const idInParameters = parseInt(receivedRequest.params.id)
+
+        const findUserRequest = await prisma.user.findUnique({
+            where: {
+                id: idInParameters
+            }
+        })
+
+        foundUser = findUserRequest
+    }
+    catch (error) {
+        throw error
+    }
+
+    return foundUser
+}
+
+/********************************************************************************/
+
 const updateUser = async (receivedRequest: any) => {
 
     let modifiedUser: any;
@@ -98,6 +122,7 @@ const deleteUser = async (receivedRequest: any) => {
 export {
     createUser,
     getUsers,
+    getUserById,
     updateUser,
     deleteUser
 }

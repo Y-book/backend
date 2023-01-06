@@ -6,6 +6,7 @@ const UserRouter = express.Router()
 UserRouter
     .post("/", userController.createUser)
     .get("/", userController.getUsers)
+    .get("/:id", userController.getUserById)
     .patch("/:id", userController.updateUser)
     .delete("/:id", userController.deleteUser)
 
