@@ -6,5 +6,7 @@ const PostRouter = express.Router()
 PostRouter
     .post("/", postController.createPost)
     .get("/", postController.getPosts)
+    .patch("/:id", postController.updatePost)
+    .delete("/:id", postController.deletePost)
 
 export default PostRouter

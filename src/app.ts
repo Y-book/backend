@@ -21,11 +21,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// CORS handling
 app.use(cors())
 
 //Routes
-app.use("/user", UserRouter);
-app.use("/post", PostRouter);
+app.use("/users", UserRouter);
+app.use("/posts", PostRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
