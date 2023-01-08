@@ -9,10 +9,11 @@ const createPost = async (requestBody: any) => {
     let createdPost: any;
 
     try {
+        
         const postToCreate = await prisma.post.create({
             data: {
                 htmlContent: requestBody.htmlContent,
-                userId: requestBody.userId
+                userId: parseInt(requestBody.userId, 10)
             },
         })
 

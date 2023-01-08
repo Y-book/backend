@@ -1,15 +1,14 @@
 import express, { Response, Request, NextFunction } from "express"
+
 import createError from "http-errors"
 import path from "path"
 import cookieParser from "cookie-parser"
 import logger from "morgan";
-
-//Routers
-import UserRouter from "./routes/user-routes";
-import PostRouter from "./routes/post-routes";
-
 import cors from "cors"
 
+import UserRouter from "./routes/user-routes"
+import PostRouter from "./routes/post-routes"
+import PostLikeRouter from "./routes/postLike-routes"
 
 const app = express();
 
@@ -19,12 +18,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// CORS handling
 app.use(cors())
-
-//Routes
-app.use("/users", UserRouter);
-app.use("/posts", PostRouter);
+app.use("/users", UserRouter)
+app.use("/posts", PostRouter)
+app.use("/likes", PostLikeRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
