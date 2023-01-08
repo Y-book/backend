@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { deleteComment, getCommentsByPostId } from "./comment-service";
 
 const prisma = new PrismaClient();
 
@@ -11,6 +12,7 @@ const createPost = async (requestBody: any, userIdFromLocal: any) => {
     let createdPost: any;
 
     try {
+        
         const postToCreate = await prisma.post.create({
             data: {
                 htmlContent: requestBody.htmlContent,
@@ -74,21 +76,43 @@ const updatePost = async (receivedRequest: any) => {
 const deletePost = async (receivedRequest: any) => {
     
         let deletedPost: any;
+        let deletedPostRequest;
     
         try {
             const idInParameters = parseInt(receivedRequest.params.id)
-    
-            const deletedPostRequest = await prisma.post.delete({
-                where: {
-                    id: idInParameters
-                },
-            })
-    
+            
+            const comments = await getCommentsByPostId(receivedRequest);
+
+            console.log("comments : ", comments);
+            
+            let commentsDeleted = 0;
+
+            if (comments.length > 0) {
+                comments.forEach(async (comment: {id: number}) => {
+                    await deleteComment(comment.id)
+                    commentsDeleted++;
+                    if(commentsDeleted === comments.length) {                    
+                        deletedPostRequest = await prisma.post.delete({
+                            where: {
+                                id: idInParameters
+                            },
+                        })
+                    }
+                });
+            } else {
+                deletedPostRequest = await prisma.post.delete({
+                    where: {
+                        id: idInParameters
+                    },
+                })
+            }
+
             deletedPost = deletedPostRequest
+
+            return deletedPost
         } catch (error) {
             throw error
         }
-        return deletedPost
 }
 
 export {
