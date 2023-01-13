@@ -4,15 +4,17 @@ const prisma = new PrismaClient();
 
 /********************************************************************************/
 
-const createPost = async (requestBody: any) => {
+const createPost = async (requestBody: any, userIdFromLocal: any) => {
 
+
+    let userId = userIdFromLocal
     let createdPost: any;
 
     try {
         const postToCreate = await prisma.post.create({
             data: {
                 htmlContent: requestBody.htmlContent,
-                userId: requestBody.userId
+                userId: userId
             },
         })
 

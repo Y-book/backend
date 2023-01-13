@@ -1,13 +1,14 @@
 import * as postService from '../services/post-service'
-import express, { Request, Response } from 'express'
+import express, { request, Request, Response } from 'express'
 
 const createPost = async (req: Request, res: Response) => {
 
     let returnedResponse: any;
     let requestBody = req.body;
+    let userIdInResponseLocals = res.locals.user.userId;
 
     try {
-        returnedResponse = await postService.createPost(requestBody);
+        returnedResponse = await postService.createPost(requestBody, userIdInResponseLocals);
     } 
     catch (error) {
         throw error;
