@@ -6,18 +6,18 @@ const prisma = new PrismaClient();
 
 /********************************************************************************/
 
-const createLike = async (receivedRequest: any) => {
+const createLike = async (receivedRequest: any,userIdFromLocal: any) => {
 
+    const userId = userIdFromLocal
     let createdLike: any;
     
     try {
-
         const requestBody = receivedRequest.body
         
         const likeToCreate = await prisma.postLike.create({
             data: {
                 postId: parseInt(requestBody.postId, 10),
-                userId: parseInt(requestBody.userId, 10)
+                userId: userIdFromLocal
             },
         })
 
@@ -52,7 +52,6 @@ const getLikeByPostId = async (receivedRequest: any) => {
     let foundLikes: any;
 
     try {
-
         const postId = parseInt(receivedRequest.params.id)
         
         const findLikesRequest = await prisma.postLike.findMany({
@@ -72,23 +71,16 @@ const getLikeByPostId = async (receivedRequest: any) => {
 
 /********************************************************************************/
 
-const getLikeByPostIdAndUserId = async (receivedRequest: any) => {
+const getLikeByPostIdAndUserId = async (receivedRequest: any, userIdFromLocal: any) => {
 
+    const userId = userIdFromLocal
     let foundLikes: any;
 
     try {
-        const token = receivedRequest.headers.token;
-
-        const decodedToken: {email: string} = jwt_decode(token);
-
-        const user = await getUserByMail(decodedToken.email);
-
-        const postId = parseInt(receivedRequest.params.id)
-        
         const findLikesRequest = await prisma.postLike.findMany({
             where: {
-                postId: postId,
-                userId: user.id
+                postId: parseInt(receivedRequest.params.id),
+                userId: userIdFromLocal
             }
         })
 
@@ -125,10 +117,22 @@ const deleteLike = async (receivedRequest: any) => {
     return deletedLike
 }
 
+const deleteLikesBeforePost = async (receivedRequest: any, idInParameters: any) => {
+    const likes = await getLikeByPostId(receivedRequest)
+    if (likes.length > 0) {
+        await prisma.postComment.deleteMany({
+            where: {
+            postId: idInParameters,
+            },
+        })
+    }
+}
+
 export {
     createLike,
     getLikes,
     getLikeByPostIdAndUserId,
     getLikeByPostId,
-    deleteLike
+    deleteLike,
+    deleteLikesBeforePost
 }

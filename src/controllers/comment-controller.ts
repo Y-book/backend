@@ -5,13 +5,15 @@ const createComment = async (req: Request, res: Response) => {
 
     let returnedResponse: any;
     let requestBody = req.body;
+    const userIdInResponseLocals = res.locals.user.userId;
 
     try {
-        returnedResponse = await commentService.createComment(requestBody);
+        returnedResponse = await commentService.createComment(requestBody, userIdInResponseLocals);
     } 
     catch (error) {
         throw error;
     }
+    
     res.status(201).send(returnedResponse);
 }
 
@@ -48,9 +50,10 @@ const getCommentsByPostId = async (req: Request, res: Response) => {
 const updateComment = async (req: Request, res: Response) => {
     
         let returnedResponse: any;
+        const userIdInResponseLocals = res.locals.user.userId;
     
         try {
-            returnedResponse = await commentService.updateComment(req);
+            returnedResponse = await commentService.updateComment(req, userIdInResponseLocals);
         }
         catch (error) {
             throw error;

@@ -4,9 +4,10 @@ import { Request, Response } from 'express'
 const createLike = async (req: Request, res: Response) => {
     
     let returnedResponse: any;
+    const userIdInResponseLocals = res.locals.user.userId;
 
     try {
-        returnedResponse = await postLikeServices.createLike(req);
+        returnedResponse = await postLikeServices.createLike(req, userIdInResponseLocals);
     }
     catch (error) {
         throw error;
@@ -35,9 +36,10 @@ const getLikes = async (req: Request, res: Response) => {
 const getLikeByPostIdAndUserId = async (req: Request, res: Response) => {
     
     let returnedResponse: any;
+    const userIdInResponseLocals = res.locals.user.userId;
 
     try {
-        returnedResponse = await postLikeServices.getLikeByPostIdAndUserId(req);
+        returnedResponse = await postLikeServices.getLikeByPostIdAndUserId(req, userIdInResponseLocals);
     }
     catch (error) {
         throw error;
