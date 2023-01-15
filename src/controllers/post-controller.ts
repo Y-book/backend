@@ -5,7 +5,7 @@ const createPost = async (req: Request, res: Response) => {
 
     let returnedResponse: any;
     let requestBody = req.body;
-    let userIdInResponseLocals = res.locals.user.userId;
+    const userIdInResponseLocals = res.locals.user.userId;
 
     try {
         returnedResponse = await postService.createPost(requestBody, userIdInResponseLocals);
@@ -34,17 +34,18 @@ const getPosts = async (req: Request, res: Response) => {
 /********************************************************************************/
 
 const updatePost = async (req: Request, res: Response) => {
-    
-        let returnedResponse: any;
-    
-        try {
-            returnedResponse = await postService.updatePost(req);
-        }
-        catch (error) {
-            throw error;
-        }
-    
-        res.status(200).send(returnedResponse);
+
+    const userIdInResponseLocals = res.locals.user.userId;
+    let returnedResponse: any;
+
+    try {
+        returnedResponse = await postService.updatePost(req, userIdInResponseLocals);
+    }
+    catch (error) {
+        throw error;
+    }
+
+    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
