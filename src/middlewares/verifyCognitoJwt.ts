@@ -12,7 +12,7 @@ const verifyCognito: RequestHandler = async (req, res, next) => {
   });
 
   const token: string = <string>req.headers.token
-
+    
   try {
     if (!token) {
       throw new Error("No token provided");
@@ -25,7 +25,7 @@ const verifyCognito: RequestHandler = async (req, res, next) => {
     );
 
     res.locals.user = payload;
-    console.log("Token is valid. Payload:", payload);
+    // console.log("Token is valid. Payload:", payload);
 
     let user;
     if (payload?.email) user = await getUserByMail(payload.email.toString());
