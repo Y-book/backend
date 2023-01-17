@@ -1,6 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import jwt_decode from "jwt-decode";
-import { getUserByMail } from "./user-service";
 
 const prisma = new PrismaClient();
 

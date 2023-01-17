@@ -41,6 +41,8 @@ const getComments = async () => {
     return foundComments
 }
 
+/********************************************************************************/
+
 const getCommentsByPostId = async (receivedRequest: any) => {
 
     let foundComments: any;
@@ -113,6 +115,8 @@ const deleteComment = async (commentId: number) => {
         }
         return deletedComment
 }
+
+/********************************************************************************/
 
 const deleteCommentsBeforePost = async (receivedRequest: any, idInParameters: any) => {
     const comments = await getCommentsByPostId(receivedRequest)
