@@ -30,7 +30,7 @@ const verifyCognito: RequestHandler = async (req, res, next) => {
     let user;
     if (payload?.email) user = await getUserByMail(payload.email.toString());
 
-    //We add the variable userId in the response locals
+    //Added the variable userId in the response locals
     payload["userId"] = user.id;
 
     next();
