@@ -56,7 +56,7 @@ const getLikeByPostId = async (receivedRequest: any) => {
             where: {
                 postId: postId,
             }
-        })        
+        })
 
         foundLikes = findLikesRequest
     }
@@ -116,9 +116,11 @@ const deleteLike = async (receivedRequest: any) => {
 }
 
 const deleteLikesBeforePost = async (receivedRequest: any, idInParameters: any) => {
+    
     const likes = await getLikeByPostId(receivedRequest)
+    
     if (likes.length > 0) {
-        await prisma.postComment.deleteMany({
+        await prisma.postLike.deleteMany({
             where: {
             postId: idInParameters,
             },
