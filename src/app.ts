@@ -7,6 +7,7 @@ import logger from "morgan";
 //Routers
 import UserRouter from "./routes/user-routes";
 import PostRouter from "./routes/post-routes";
+import FriendshipsRouter from "./routes/friendships-router";
 
 import cors from "cors"
 
@@ -25,6 +26,7 @@ app.use(cors())
 //Routes
 app.use("/users", UserRouter);
 app.use("/posts", PostRouter);
+app.use("/friendships", FriendshipsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
