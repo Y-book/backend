@@ -1,13 +1,14 @@
 import * as postService from '../services/post-service'
-import express, { Request, Response } from 'express'
+import express, { request, Request, Response } from 'express'
 
 const createPost = async (req: Request, res: Response) => {
 
     let returnedResponse: any;
     let requestBody = req.body;
+    const userIdInResponseLocals = res.locals.user.userId;
 
     try {
-        returnedResponse = await postService.createPost(requestBody);
+        returnedResponse = await postService.createPost(requestBody, userIdInResponseLocals);
     } 
     catch (error) {
         throw error;
@@ -33,17 +34,18 @@ const getPosts = async (req: Request, res: Response) => {
 /********************************************************************************/
 
 const updatePost = async (req: Request, res: Response) => {
-    
-        let returnedResponse: any;
-    
-        try {
-            returnedResponse = await postService.updatePost(req);
-        }
-        catch (error) {
-            throw error;
-        }
-    
-        res.status(200).send(returnedResponse);
+
+    const userIdInResponseLocals = res.locals.user.userId;
+    let returnedResponse: any;
+
+    try {
+        returnedResponse = await postService.updatePost(req, userIdInResponseLocals);
+    }
+    catch (error) {
+        throw error;
+    }
+
+    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
