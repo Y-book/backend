@@ -22,40 +22,47 @@ const createFriendship = async (requestBody: any) => {
                 return createdFriendship
             }
 
-const getFriendships = async () => {
-                    
-                        let foundFriendships: any;
+const getFriendshipsByUserId = async (receivedRequest: any, userIdFromLocal: any) => {
                     
                         try {
-                            const findFriendshipsRequest = await prisma.friendship.findMany()
-                    
-                            foundFriendships = findFriendshipsRequest
+                            const findFriendshipsRequest = await prisma.friendship.findMany(
+                                {
+                                    where: {
+                                        OR: [
+                                            {
+                                                fromId: userIdFromLocal,
+                                            }, 
+                                            {
+                                                toId: userIdFromLocal,
+                                            }
+                                        ]
+                                        
+                                    },
+                                }
+                            )
+                            return findFriendshipsRequest;                    
+        
                         } 
                         catch (error) {
                             throw error
                         }
-                        return foundFriendships
                     } 
 
-const getFriendshipsById = async (receivedRequest: any) => {
-    let foundFriendshipsById: any;
+const getFriendships = async () => {
+
+    let foundFriendships: any;
 
     try {
-        const idInParameters = parseInt(receivedRequest.params.id)
-
-        const findFriendshipsByIdRequest = await prisma.friendship.findUnique({
-            where: {
-                id: idInParameters
-            },
-        })
-
-        foundFriendshipsById = findFriendshipsByIdRequest
+        const findFriendshipsRequest = await prisma.friendship.findMany()
+        
+        foundFriendships = findFriendshipsRequest
     }
     catch (error) {
         throw error
     }
-    return foundFriendshipsById
+    return foundFriendships
 }
+
 
 const deleteFriendship = async (receivedRequest: any) => {
         let deletedFriendship: any;
@@ -76,9 +83,12 @@ const deleteFriendship = async (receivedRequest: any) => {
         return deletedFriendship
     }
 
+
+
+    
 export {
     createFriendship,
-    getFriendships,
+    getFriendshipsByUserId,
     deleteFriendship,
-    getFriendshipsById
+    getFriendships
 }
