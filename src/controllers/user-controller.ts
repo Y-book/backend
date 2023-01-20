@@ -45,6 +45,20 @@ const getUserById = async (req: Request, res: Response) => {
         res.status(200).send(returnedResponse);
 }
 
+const getConnectedUserById = async (req: Request, res: Response) => {
+    
+    let returnedResponse: any;
+    const userIdInResponseLocals = res.locals.user.userId;
+
+    try {
+        returnedResponse = await userService.getConnectedUserById(req, userIdInResponseLocals);
+    }
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
+}
+
 /********************************************************************************/
 
 const updateUser = async (req: Request, res: Response) => {
@@ -81,6 +95,7 @@ export {
     createUser,
     getUsers,
     getUserById,
+    getConnectedUserById,
     updateUser,
     deleteUser
 };

@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { deleteComment, deleteCommentsBeforePost, getCommentsByPostId } from "./comment-service";
-import { deleteLike, deleteLikesBeforePost, getLikeByPostId } from "./postLike-service";
+import { deleteCommentsBeforePost } from "./comment-service";
+import { deleteLikesBeforePost } from "./postLike-service";
 
 const prisma = new PrismaClient();
 
@@ -8,7 +8,6 @@ const prisma = new PrismaClient();
 
 const createPost = async (requestBody: any, userIdFromLocal: any) => {
 
-    const userId = userIdFromLocal
     let createdPost: any;
 
     try {
@@ -16,7 +15,7 @@ const createPost = async (requestBody: any, userIdFromLocal: any) => {
         const postToCreate = await prisma.post.create({
             data: {
                 htmlContent: requestBody.htmlContent,
-                userId: userId
+                userId: userIdFromLocal
             },
         })
 
@@ -60,6 +59,118 @@ const getPosts = async () => {
     return foundPosts
 }
 
+const getPostsByUserId = async (userIdFromLocal: any) => {
+
+    let foundPosts: any;
+
+    try {
+        // const findPostsRequest = await prisma.post.findMany()
+        const findPostsRequest = await prisma.post.findMany({
+            where: {
+                userId: userIdFromLocal,
+            },
+            include: {
+                _count: {
+                    select: {
+                    postLikes: true,
+                    postComments: true,
+                    },
+                },
+                postComments: {
+                    select: {
+                      id: true,
+                      text: true,
+                      userId: true
+                    },
+                },
+            },
+        })
+
+        foundPosts = findPostsRequest
+    } catch (error) {
+        throw error
+    }
+    return foundPosts
+}
+
+const getPostsByLikesId = async (userIdFromLocal: any) => {
+
+    let foundPosts = [];
+
+    try {
+
+        const posts = await prisma.post.findMany({
+            where: {
+                postLikes: {
+                    some: {
+                        userId: userIdFromLocal
+                    }
+                }
+            },
+            include: {
+                _count: {
+                    select: {
+                    postLikes: true,
+                    postComments: true,
+                    },
+                },
+                postComments: {
+                    select: {
+                        id: true,
+                        text: true,
+                        userId: true
+                    },
+                },
+            },
+        })
+
+        foundPosts = posts
+
+    } catch (error) {
+        throw error
+    }
+    return foundPosts
+}
+
+const getPostsByCommentsId = async (userIdFromLocal: any) => {
+
+    let foundPosts = [];
+
+    try {
+
+        const post = await prisma.post.findMany({
+            where: {
+                postComments: {
+                    some: {
+                        userId: userIdFromLocal
+                    }
+                }
+            },
+            include: {
+                _count: {
+                    select: {
+                    postLikes: true,
+                    postComments: true,
+                    },
+                },
+                postComments: {
+                    select: {
+                        id: true,
+                        text: true,
+                        userId: true
+                    },
+                },
+            },
+        })
+        
+        foundPosts = post        
+
+    } catch (error) {
+        throw error
+    }
+    return foundPosts
+}
+
 /********************************************************************************/
 
 const updatePost = async (receivedRequest: any, userIdFromLocal: any) => {
@@ -91,20 +202,6 @@ const updatePost = async (receivedRequest: any, userIdFromLocal: any) => {
 
 /********************************************************************************/
 
-const test = function (likes: any) {
-    return new Promise(() => {
-        let deletedLikes = 0;
-
-        likes.forEach(async (like: {id: number}) => {
-            await deleteLike(like.id)
-            deletedLikes++
-            if (deletedLikes >= likes.length) {
-                return true;
-            }
-        })
-    });
-}
-
 const deletePost = async (receivedRequest: any) => {
         let deletedPost: any;
         let deletedPostRequest;
@@ -131,6 +228,9 @@ const deletePost = async (receivedRequest: any) => {
 export {
     createPost,
     getPosts,
+    getPostsByUserId,
+    getPostsByLikesId,
+    getPostsByCommentsId,
     updatePost,
     deletePost
 }

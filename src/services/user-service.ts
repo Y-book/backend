@@ -44,14 +44,37 @@ const getUsers = async () => {
 
 const getUserById = async (receivedRequest: any) => {
 
-    let foundUser: any;
+    let foundUser: any;    
 
     try {
-        const idInParameters = parseInt(receivedRequest.params.id)
+
+        const idInParameters = parseInt(receivedRequest.params.id)        
 
         const findUserRequest = await prisma.user.findUnique({
             where: {
                 id: idInParameters
+            }
+        })
+
+        foundUser = findUserRequest
+    }
+    catch (error) {
+        throw error
+    }
+
+    return foundUser
+}
+
+
+const getConnectedUserById = async (receivedRequest: any, userIdFromLocal: any) => {
+
+    let foundUser: any;    
+
+    try {
+
+        const findUserRequest = await prisma.user.findUnique({
+            where: {
+                id: userIdFromLocal
             }
         })
 
@@ -144,6 +167,7 @@ export {
     createUser,
     getUsers,
     getUserById,
+    getConnectedUserById,
     getUserByMail,
     updateUser,
     deleteUser

@@ -31,6 +31,48 @@ const getPosts = async (req: Request, res: Response) => {
         res.status(200).send(returnedResponse);
 }
 
+const getPostsByUserId = async (req: Request, res: Response) => {
+    
+    let returnedResponse: any;
+    const userIdInResponseLocals = res.locals.user.userId;
+
+    try {
+        returnedResponse = await postService.getPostsByUserId(userIdInResponseLocals);
+    }
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
+}
+
+const getPostsByLikesId = async (req: Request, res: Response) => {
+    
+    let returnedResponse: any;
+    const userIdInResponseLocals = res.locals.user.userId;
+
+    try {
+        returnedResponse = await postService.getPostsByLikesId(userIdInResponseLocals);
+    }
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
+}
+
+const getPostsByCommentsId = async (req: Request, res: Response) => {
+    
+    let returnedResponse: any;
+    const userIdInResponseLocals = res.locals.user.userId;
+
+    try {
+        returnedResponse = await postService.getPostsByCommentsId(userIdInResponseLocals);
+    }
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
+}
+
 /********************************************************************************/
 
 const updatePost = async (req: Request, res: Response) => {
@@ -66,5 +108,8 @@ const deletePost = async (req: Request, res: Response) => {
 
 export { createPost, 
         getPosts, 
+        getPostsByUserId,
+        getPostsByLikesId,
+        getPostsByCommentsId,
         updatePost,
         deletePost }

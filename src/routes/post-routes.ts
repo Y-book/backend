@@ -7,7 +7,10 @@ const PostRouter = express.Router()
 PostRouter
     .use(verifyCognito)
     .post("/", postController.createPost)
-    .get("/", postController.getPosts)
+    .get("/all", postController.getPosts)
+    .get("/", postController.getPostsByUserId)
+    .get("/likes", postController.getPostsByLikesId)
+    .get("/comments", postController.getPostsByCommentsId)
     .patch("/:id", postController.updatePost)
     .delete("/:id", postController.deletePost)
 
