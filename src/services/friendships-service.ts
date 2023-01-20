@@ -22,8 +22,7 @@ const createFriendship = async (requestBody: any) => {
                 return createdFriendship
             }
 
-const getFriendshipsByUserId = async (receivedRequest: any) => {
-                    
+const getFriendshipsByUserId = async (receivedRequest: any, userIdFromLocal: any) => {
                     
                         try {
                             const findFriendshipsRequest = await prisma.friendship.findMany(
@@ -31,10 +30,10 @@ const getFriendshipsByUserId = async (receivedRequest: any) => {
                                     where: {
                                         OR: [
                                             {
-                                                fromId: parseInt(receivedRequest.params.id),
+                                                fromId: userIdFromLocal,
                                             }, 
                                             {
-                                                toId: parseInt(receivedRequest.params.id),
+                                                toId: userIdFromLocal,
                                             }
                                         ]
                                         

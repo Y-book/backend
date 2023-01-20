@@ -18,8 +18,10 @@ const createFriendship = async (req: Request, res: Response) => {
 const getFriendshipsByUserId = async (req: Request, res: Response) => {
     let returnedResponse: any;
 
+    const userIdInResponseLocals = res.locals.user.userId;
+
     try {
-        returnedResponse = await friendshipsService.getFriendshipsByUserId(req);
+        returnedResponse = await friendshipsService.getFriendshipsByUserId(req, userIdInResponseLocals);
     }
     catch (error) {
         throw error;
