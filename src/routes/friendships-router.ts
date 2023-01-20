@@ -5,8 +5,8 @@ const FriendshipsRouter = express.Router()
 
 FriendshipsRouter
     .post("/", friendshipsController.createFriendship)
+    .get("/:id", friendshipsController.getFriendshipsByUserId)
     .get("/", friendshipsController.getFriendships)
-    .get("/:id", friendshipsController.getFriendshipsById)
     .delete("/:id", friendshipsController.deleteFriendship)
 
 export default FriendshipsRouter
