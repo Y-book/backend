@@ -38,6 +38,25 @@ const getFriendshipsByUserId = async (receivedRequest: any, userIdFromLocal: any
                                         ]
                                         
                                     },
+                                    include: {
+                                        from: {
+                                            select: {
+                                                id: true,
+                                                email: true,
+                                                firstname: true,
+                                                lastname: true,
+                                            }
+                                        },
+                                        to: {
+                                            select: {
+                                                id: true,
+                                                email: true,
+                                                firstname: true,
+                                                lastname: true,
+                                            }
+                                        }
+                                    }
+
                                 }
                             )
                             return findFriendshipsRequest;                    
