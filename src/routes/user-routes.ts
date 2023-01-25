@@ -6,6 +6,7 @@ const UserRouter = express.Router()
 
 UserRouter
     .post("/", userController.createUser)
+    .get("/search-users", userController.getUsersWithResearch)
     .use(verifyCognito)
     .get("/all", userController.getUsers)
     .get("/", userController.getConnectedUserById)

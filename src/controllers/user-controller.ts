@@ -32,6 +32,21 @@ const getUsers = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
+const getUsersWithResearch = async (req: Request, res: Response) => {
+    
+        let returnedResponse: any;
+    
+        try {
+            returnedResponse = await userService.getUsersWithResearch(req);
+            res.status(200).send(returnedResponse);
+        }
+        catch (error) {
+            throw error;
+        }
+}
+
+/********************************************************************************/
+
 const getUserById = async (req: Request, res: Response) => {
     
         let returnedResponse: any;
@@ -97,5 +112,6 @@ export {
     getUserById,
     getConnectedUserById,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUsersWithResearch
 };

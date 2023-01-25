@@ -110,6 +110,46 @@ const getUserByMail = async (mail: string) => {
 
 /********************************************************************************/
 
+const getUsersWithResearch = async (receivedRequest: any) => {
+    
+        let foundUsers: any;
+    
+        try {
+    
+            const researchedTerm = receivedRequest.body.research
+    
+            const findUsersRequest = await prisma.user.findMany({
+                where: {
+                    OR: [
+                        {
+                            firstname: {
+                                contains: researchedTerm
+                            }
+                        },
+                        {
+                            lastname: {
+                                contains: researchedTerm
+                            }
+                        }
+                    ]
+                },
+                select: {
+                    firstname: true,
+                    lastname: true,
+                }
+            })
+    
+            foundUsers = findUsersRequest
+        }
+        catch (error) {
+            throw error
+        }
+    
+        return foundUsers
+}
+
+/********************************************************************************/
+
 const updateUser = async (receivedRequest: any) => {
 
     let modifiedUser: any;
@@ -170,6 +210,7 @@ export {
     getConnectedUserById,
     getUserByMail,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUsersWithResearch
 }
 
