@@ -8,11 +8,11 @@ const createFriendship = async (req: Request, res: Response) => {
         
             try {
                 returnedResponse = await friendshipsService.createFriendship(requestBody);
+                res.status(201).send(returnedResponse);
             } 
             catch (error) {
                 throw error;
             }
-            res.status(201).send(returnedResponse);
         }
 
 const getFriendshipsByUserId = async (req: Request, res: Response) => {
