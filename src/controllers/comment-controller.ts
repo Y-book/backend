@@ -32,6 +32,8 @@ const getComments = async (req: Request, res: Response) => {
         res.status(200).send(returnedResponse);
 }
 
+/********************************************************************************/
+
 const getCommentsByPostId = async (req: Request, res: Response) => {
     
     let returnedResponse: any;
