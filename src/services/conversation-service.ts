@@ -28,7 +28,10 @@ const getConversations = async (userIdFromLocal: number) => {
     try {
         const findConversationsRequest = await prisma.conversation.findMany({
             where: {
-                fromId: userIdFromLocal
+                OR: [
+                {fromId: userIdFromLocal},
+                {toId: userIdFromLocal}
+            ]
             }
         })
 
