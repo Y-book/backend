@@ -12,10 +12,6 @@ const createMessage = async (userIdFromLocal: number, requestBody: any) => {
                 conversationId: requestBody.conversationId,
                 userId: userIdFromLocal,
                 content: requestBody.content,
-            },
-            select: {
-                createdAt: true,
-                content: true
             }
         })
 
@@ -35,12 +31,7 @@ const getMessagesPerConversation = async (receivedRequestParams: number) => {
 
     try {
         const findMessagesRequest = await prisma.conversationMessage.findMany({
-            where: { conversationId: receivedRequestParams },
-            select: {
-                createdAt: true,
-                updatedAt: true,
-                content: true
-            }
+            where: { conversationId: receivedRequestParams }
         })
 
         foundMessages = findMessagesRequest
@@ -59,7 +50,7 @@ const deleteMessage = async (idInParameters: number) => {
 
     try {
 
-        const deletedMessageRequest = await prisma.conversationMessage.deleteMany({
+        const deletedMessageRequest = await prisma.conversationMessage.delete({
             where: { 
                 id: idInParameters 
             }, 
