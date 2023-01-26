@@ -4,29 +4,36 @@ import * as conversationService from "../services/conversation-service";
 const createConversation = async (req: Request, res: Response) => {
     
         let returnedResponse: any;
+        const userIdInResponseLocals = res.locals.user.userId
         let requestBody = req.body;
+
     
         try {
-            returnedResponse = await conversationService.createConversation(requestBody);
+            returnedResponse = await conversationService.createConversation(userIdInResponseLocals, requestBody);
+            res.status(201).send(returnedResponse);
         } 
         catch (error) {
             throw error;
         }
-        res.status(201).send(returnedResponse);
     }
+
+/********************************************************************************/
 
 const getConversations = async (req: Request, res: Response) => {
             
+                const userIdInResponseLocals = res.locals.user.userId
                 let returnedResponse: any;
             
                 try {
-                    returnedResponse = await conversationService.getConversations();
+                    returnedResponse = await conversationService.getConversations(userIdInResponseLocals);
                 } 
                 catch (error) {
                     throw error;
                 }
                 res.status(200).send(returnedResponse);
             }
+
+/********************************************************************************/
 
 const deleteConversation = async (req: Request, res: Response) => {
                             

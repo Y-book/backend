@@ -2,13 +2,14 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const createConversation = async (requestBody: any) => {
+const createConversation = async (userIdFromLocal: number, requestBody: any ) => {
     let createdConversation: any;
 
     try {
+
         const conversationToCreate = await prisma.conversation.create({
             data: {
-                fromId: requestBody.fromId,
+                fromId: userIdFromLocal,
                 toId: requestBody.toId,
             },
         })
@@ -19,11 +20,17 @@ const createConversation = async (requestBody: any) => {
     return createdConversation
 }
 
-const getConversations = async () => {
+/********************************************************************************/
+
+const getConversations = async (userIdFromLocal: number) => {
     let foundConversations: any;
 
     try {
-        const findConversationsRequest = await prisma.conversation.findMany()
+        const findConversationsRequest = await prisma.conversation.findMany({
+            where: {
+                fromId: userIdFromLocal
+            }
+        })
 
         foundConversations = findConversationsRequest
     } catch (error) {
@@ -31,6 +38,8 @@ const getConversations = async () => {
     }
     return foundConversations
 }
+
+/********************************************************************************/
 
 const deleteConversation = async (receivedRequest: any) => {
     let deletedConversation: any;
