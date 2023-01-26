@@ -36,17 +36,18 @@ const getConversations = async (req: Request, res: Response) => {
 /********************************************************************************/
 
 const deleteConversation = async (req: Request, res: Response) => {
-                            
-                                let returnedResponse: any;
-                            
-                                try {
-                                returnedResponse = await conversationService.deleteConversation(req);
-                                } 
-                                catch (error) {
-                                    throw error;
-                                }
-                                res.status(200).send(returnedResponse);
-                            }
+
+    let returnedResponse: any;
+
+    try {
+        returnedResponse = await conversationService.deleteConversation(req);
+    }
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
+}
+
 
 export {
     createConversation,

@@ -6,13 +6,13 @@ import cookieParser from "cookie-parser"
 import logger from "morgan";
 
 //Routers
-
 import UserRouter from "./routes/user-routes"
 import PostRouter from "./routes/post-routes"
 import PostLikeRouter from "./routes/postLike-routes"
 import CommentRouter from "./routes/comment-routes";
 import FriendshipsRouter from "./routes/friendships-router";
-import ConversationRouter from "./routes/conversation-routes";
+import ConversationsRouter from "./routes/conversation-routes";
+import MessagesRouter from "./routes/message-routes";
 
 import cors from "cors"
 
@@ -28,13 +28,13 @@ app.use(cors())
 
 
 //Routes
-
 app.use("/users", UserRouter)
 app.use("/posts", PostRouter)
 app.use("/likes", PostLikeRouter)
 app.use("/comments", CommentRouter);
 app.use("/friendships", FriendshipsRouter);
-app.use("/conversations", ConversationRouter);
+app.use("/conversations", ConversationsRouter);
+app.use("/messages", MessagesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

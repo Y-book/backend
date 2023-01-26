@@ -2,47 +2,55 @@ import { Request, Response } from "express";
 import * as messageService from "../services/messaging-service";
 
 const createMessage = async (req: Request, res: Response) => {
-    
-        let returnedResponse: any;
-        let requestBody = req.body;
-    
-        try {
-            returnedResponse = await messageService.createMessage(requestBody);
-        } 
-        catch (error) {
-            throw error;
-        }
+
+    let returnedResponse: any;
+    const userIdInResponseLocals = res.locals.user.userId
+    let requestBody = req.body;
+
+    try {
+        returnedResponse = await messageService.createMessage(userIdInResponseLocals, requestBody);
         res.status(201).send(returnedResponse);
     }
+    catch (error) {
+        throw error;
+    }
+}
 
-const getMessages = async (req: Request, res: Response) => {
-        
-            let returnedResponse: any;
-        
-            try {
-                returnedResponse = await messageService.getMessages();
-            } 
-            catch (error) {
-                throw error;
-            }
-            res.status(200).send(returnedResponse);
-        }
+/********************************************************************************/
+
+const getMessagesPerConversation = async (req: Request, res: Response) => {
+
+    let returnedResponse: any;
+    const idInParameters = parseInt(req.params.id)
+
+    try {
+        returnedResponse = await messageService.getMessagesPerConversation(idInParameters);
+        res.status(200).send(returnedResponse);
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+/********************************************************************************/
 
 const deleteMessage = async (req: Request, res: Response) => {
-                
-                    let returnedResponse: any;
-                
-                    try {
-                    returnedResponse = await messageService.deleteMessage(req);
-                    } 
-                    catch (error) {
-                        throw error;
-                    }
-                    res.status(200).send(returnedResponse);
-                }
+
+    let returnedResponse: any;
+    let idInParameters = parseInt(req.params.id);
+
+    try {
+        returnedResponse = await messageService.deleteMessage(idInParameters);
+        res.status(200).send(returnedResponse);
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 
 export {
     createMessage,
-    getMessages,
+    getMessagesPerConversation,
     deleteMessage,
 }

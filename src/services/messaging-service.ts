@@ -2,63 +2,79 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const createMessage = async (requestBody: any) => {
-    
-        let createdMessage: any;
-    
-        try {
-            const messageToCreate = await prisma.conversationMessage.create({
-                data: {
-                    content: requestBody.content,
-                    userId: requestBody.userId,
-                    conversationId: requestBody.conversationId,
-                },
-            })
-    
-            createdMessage = messageToCreate
-    
-        } catch (error) {
-            throw error
-        }
-            return createdMessage
-        }
-const getMessages = async () => {
-        
-            let foundMessages: any;
-        
-            try {
-                const findMessagesRequest = await prisma.conversationMessage.findMany()
-        
-                foundMessages = findMessagesRequest
-            } 
-            catch (error) {
-                throw error
+const createMessage = async (userIdFromLocal: number, requestBody: any) => {
+
+    let createdMessage: any;
+
+    try {
+        const messageToCreate = await prisma.conversationMessage.create({
+            data: {
+                conversationId: requestBody.conversationId,
+                userId: userIdFromLocal,
+                content: requestBody.content,
+            },
+            select: {
+                createdAt: true,
+                content: true
             }
-            return foundMessages
-        }
-const deleteMessage = async (receivedRequest: any) => {
-            
-                let deletedMessage: any;
-            
-                try {
-                const idInParameters = parseInt(receivedRequest.params.id)
-            
-                const deletedMessageRequest = await prisma.conversationMessage.delete({
-                    where: {
-                        id: idInParameters
-                    },
-                })
-            
-                deletedMessage = deletedMessageRequest
-                } 
-                catch (error) {
-                    throw error
-                }
-                return deletedMessage
+        })
+
+        createdMessage = messageToCreate
+
+    } catch (error) {
+        throw error
+    }
+    return createdMessage
+}
+
+/********************************************************************************/
+
+const getMessagesPerConversation = async (receivedRequestParams: number) => {
+
+    let foundMessages: any;
+
+    try {
+        const findMessagesRequest = await prisma.conversationMessage.findMany({
+            where: { conversationId: receivedRequestParams },
+            select: {
+                createdAt: true,
+                updatedAt: true,
+                content: true
             }
+        })
+
+        foundMessages = findMessagesRequest
+    }
+    catch (error) {
+        throw error
+    }
+    return foundMessages
+}
+
+/********************************************************************************/
+
+const deleteMessage = async (idInParameters: number) => {
+
+    let deletedMessage: any;
+
+    try {
+
+        const deletedMessageRequest = await prisma.conversationMessage.deleteMany({
+            where: { 
+                id: idInParameters 
+            }, 
+        })
+
+        deletedMessage = deletedMessageRequest
+    }
+    catch (error) {
+        throw error
+    }
+    return deletedMessage
+}
 
 export {
     createMessage,
-    getMessages,
+    getMessagesPerConversation,
     deleteMessage,
 }
