@@ -54,9 +54,24 @@ const deleteFriendship = async (req: Request, res: Response) => {
                                     res.status(200).send(returnedResponse);
                                 }
 
+const updateFriendship = async (req: Request, res: Response) => {
+    let returnedResponse: any;
+
+    const userIdInResponseLocals = res.locals.user.userId;
+
+    try {
+        returnedResponse = await friendshipsService.updateFriendship(req, userIdInResponseLocals);
+    }
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
+}
+
 export {
     createFriendship,
     getFriendshipsByUserId,
     deleteFriendship,
-    getFriendships
+    getFriendships,
+    updateFriendship
 }
