@@ -10,5 +10,6 @@ FriendshipsRouter
     .get("/", friendshipsController.getFriendshipsByUserId)
     // .get("/", friendshipsController.getFriendships)
     .delete("/:id", friendshipsController.deleteFriendship)
+    .patch("/", friendshipsController.updateFriendship)
 
 export default FriendshipsRouter

@@ -3,17 +3,18 @@ import * as friendshipsService from "../services/friendships-service";
 
 const createFriendship = async (req: Request, res: Response) => {
         
-            let returnedResponse: any;
-            let requestBody = req.body;
-        
-            try {
-                returnedResponse = await friendshipsService.createFriendship(requestBody);
-                res.status(201).send(returnedResponse);
-            } 
-            catch (error) {
-                throw error;
-            }
-        }
+    let returnedResponse: any;
+    let requestBody = req.body;
+    const userIdInResponseLocals = res.locals.user.userId;
+
+    try {
+        returnedResponse = await friendshipsService.createFriendship(requestBody, userIdInResponseLocals);
+    } 
+    catch (error) {
+        throw error;
+    }
+    res.status(201).send(returnedResponse);
+}
 
 const getFriendshipsByUserId = async (req: Request, res: Response) => {
     let returnedResponse: any;
@@ -54,9 +55,24 @@ const deleteFriendship = async (req: Request, res: Response) => {
                                     res.status(200).send(returnedResponse);
                                 }
 
+const updateFriendship = async (req: Request, res: Response) => {
+    let returnedResponse: any;
+
+    const userIdInResponseLocals = res.locals.user.userId;
+
+    try {
+        returnedResponse = await friendshipsService.updateFriendship(req, userIdInResponseLocals);
+    }
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
+}
+
 export {
     createFriendship,
     getFriendshipsByUserId,
     deleteFriendship,
-    getFriendships
+    getFriendships,
+    updateFriendship
 }

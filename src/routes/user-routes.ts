@@ -8,7 +8,7 @@ UserRouter
     .post("/", userController.createUser)
     .use(verifyCognito)
     .get("/all", userController.getUsers)
-    .get("/search-users", userController.getUsersWithResearch)
+    .post("/search-users", userController.getUsersWithResearch)
     .get("/", userController.getConnectedUserById)
     .get("/:id", userController.getUserById)
     .patch("/:id", userController.updateUser)
