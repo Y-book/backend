@@ -35,10 +35,10 @@ const getFriendshipsByUserId = async (receivedRequest: any, userIdFromLocal: any
                                             {
                                                 toId: userIdFromLocal,
                                             }
-                                        ]
-                                        
+                                        ]                                        
                                     },
-                                    include: {
+                                    include: 
+                                    {
                                         from: {
                                             select: {
                                                 id: true,
@@ -54,9 +54,8 @@ const getFriendshipsByUserId = async (receivedRequest: any, userIdFromLocal: any
                                                 firstname: true,
                                                 lastname: true,
                                             }
-                                        }
+                                        },
                                     }
-
                                 }
                             )
                             return findFriendshipsRequest;                    
@@ -82,7 +81,6 @@ const getFriendships = async () => {
     return foundFriendships
 }
 
-
 const deleteFriendship = async (receivedRequest: any) => {
         let deletedFriendship: any;
 
@@ -102,12 +100,37 @@ const deleteFriendship = async (receivedRequest: any) => {
         return deletedFriendship
     }
 
+const updateFriendship = async (receivedRequest: any, userIdFromLocal: number) => {
+        let updatedFriendship: any;
+        
+        try{
+            const updatedFriendshipRequest = await prisma.friendship.updateMany({
+                where: {
+                    AND: [
+                        {
+                            toId: userIdFromLocal
+                        },
+                        {
+                            fromId: receivedRequest.body.fromId
+                        }
+                    ] 
+                },
+                data: {
+                    status: receivedRequest.body.status
+                },
+            })
 
-
+            updatedFriendship = updatedFriendshipRequest
+        } catch (error) {
+            throw error
+        }
+        return updatedFriendship
+    }
     
 export {
     createFriendship,
     getFriendshipsByUserId,
     deleteFriendship,
-    getFriendships
+    getFriendships,
+    updateFriendship
 }
