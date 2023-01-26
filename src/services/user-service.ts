@@ -117,29 +117,88 @@ const getUsersWithResearch = async (receivedRequest: any) => {
         try {
     
             const researchedTerm = receivedRequest.body.research
+
+            if (researchedTerm.indexOf(' ') > -1 && researchedTerm.split(" ")[1] !== "") {
+                const reserchArray = researchedTerm.split(" ");                
     
-            const findUsersRequest = await prisma.user.findMany({
-                where: {
-                    OR: [
-                        {
-                            firstname: {
-                                contains: researchedTerm
+                const findUsersRequest = await prisma.user.findMany({
+                    where: {
+                        AND: [
+                            {
+                              OR: [
+                                {
+                                    firstname: {
+                                        contains: reserchArray[0],
+                                        mode: 'insensitive',
+                                    }
+                                },
+                                {
+                                    lastname: {
+                                        contains: reserchArray[0],
+                                        mode: 'insensitive',
+                                    }
+                                },
+                              ]
+                            },
+                            {
+                              OR: [
+                                {
+                                    firstname: {
+                                        contains: reserchArray[1],
+                                        mode: 'insensitive',
+                                    }
+                                },
+                                {
+                                    lastname: {
+                                        contains: reserchArray[1],
+                                        mode: 'insensitive',
+                                    }
+                                },
+                              ]
                             }
-                        },
-                        {
-                            lastname: {
-                                contains: researchedTerm
-                            }
-                        }
-                    ]
-                },
-                select: {
-                    firstname: true,
-                    lastname: true,
-                }
-            })
-    
-            foundUsers = findUsersRequest
+                          ]
+                    },
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                })
+        
+                foundUsers = findUsersRequest
+                
+            } else {    
+                const reserchArray = researchedTerm.split(" "); 
+                const name = reserchArray[0]
+                const findUsersRequest = await prisma.user.findMany({
+                    where: {
+                        OR: [
+                            {
+                                firstname: {
+                                    contains: name,
+                                    mode: 'insensitive',
+                                }
+                            },
+                            {
+                                lastname: {
+                                    contains: name,
+                                    mode: 'insensitive',
+                                }
+                            },
+                        ]
+                    },
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                })
+        
+                foundUsers = findUsersRequest
+            }
+            
         }
         catch (error) {
             throw error
