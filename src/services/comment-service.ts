@@ -18,7 +18,9 @@ const createComment = async (requestBody: {postId: string, text: string}, userId
             },
         })
 
-        createdComment = commentToCreate
+        const response = getComment(commentToCreate.id)
+
+        createdComment = response
     } catch (error) {
         throw error
     }
@@ -26,6 +28,34 @@ const createComment = async (requestBody: {postId: string, text: string}, userId
 }
 
 /********************************************************************************/
+
+const getComment = async (id: number) => {
+
+    let foundComments;
+
+    try {
+        const findCommentsRequest = await prisma.postComment.findUnique({
+            where: {
+                id: id,
+            },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                }
+            }
+        })
+
+        foundComments = findCommentsRequest
+    } catch (error) {
+        throw error
+    }
+    return foundComments
+}
 
 const getComments = async () => {
 
@@ -54,6 +84,16 @@ const getCommentsByPostId = async (receivedRequest: {params: {id: string}}) => {
         const findCommentsRequest = await prisma.postComment.findMany({
             where: {
                 postId: postId,
+            },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                }
             }
         })        
 

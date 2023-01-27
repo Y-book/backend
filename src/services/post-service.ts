@@ -46,9 +46,25 @@ const getPosts = async () => {
                     select: {
                       id: true,
                       text: true,
-                      userId: true
+                      userId: true,
+                      user: {
+                        select: {
+                            id: true,
+                            email: true,
+                            firstname: true,
+                            lastname: true,
+                        }
+                       }
                     },
                 },
+                user: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                }
             },
         })
 
@@ -80,9 +96,25 @@ const getPostsByUserId = async (userIdFromLocal: number) => {
                     select: {
                       id: true,
                       text: true,
-                      userId: true
+                      userId: true,
+                      user: {
+                        select: {
+                            id: true,
+                            email: true,
+                            firstname: true,
+                            lastname: true,
+                        }
+                       }
                     },
                 },
+                user: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                }
             },
         })
 
@@ -118,9 +150,25 @@ const getPostsByLikesId = async (userIdFromLocal: number) => {
                     select: {
                         id: true,
                         text: true,
-                        userId: true
+                        userId: true,
+                        user: {
+                            select: {
+                                id: true,
+                                email: true,
+                                firstname: true,
+                                lastname: true,
+                            }
+                        }
                     },
                 },
+                user: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                }
             },
         })
 
@@ -157,9 +205,25 @@ const getPostsByCommentsId = async (userIdFromLocal: number) => {
                     select: {
                         id: true,
                         text: true,
-                        userId: true
+                        userId: true,
+                        user: {
+                            select: {
+                                id: true,
+                                email: true,
+                                firstname: true,
+                                lastname: true,
+                            }
+                        }
                     },
                 },
+                user: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                }
             },
         })
         
