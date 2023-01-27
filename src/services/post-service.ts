@@ -6,9 +6,9 @@ const prisma = new PrismaClient();
 
 /********************************************************************************/
 
-const createPost = async (requestBody: any, userIdFromLocal: any) => {
+const createPost = async (requestBody: {htmlContent: string}, userIdFromLocal: number) => {
 
-    let createdPost: any;
+    let createdPost;
 
     try {
         
@@ -30,7 +30,7 @@ const createPost = async (requestBody: any, userIdFromLocal: any) => {
 
 const getPosts = async () => {
 
-    let foundPosts: any;
+    let foundPosts;
 
     try {
         // const findPostsRequest = await prisma.post.findMany()
@@ -59,9 +59,9 @@ const getPosts = async () => {
     return foundPosts
 }
 
-const getPostsByUserId = async (userIdFromLocal: any) => {
+const getPostsByUserId = async (userIdFromLocal: number) => {
 
-    let foundPosts: any;
+    let foundPosts;
 
     try {
         // const findPostsRequest = await prisma.post.findMany()
@@ -93,7 +93,7 @@ const getPostsByUserId = async (userIdFromLocal: any) => {
     return foundPosts
 }
 
-const getPostsByLikesId = async (userIdFromLocal: any) => {
+const getPostsByLikesId = async (userIdFromLocal: number) => {
 
     let foundPosts = [];
 
@@ -132,7 +132,7 @@ const getPostsByLikesId = async (userIdFromLocal: any) => {
     return foundPosts
 }
 
-const getPostsByCommentsId = async (userIdFromLocal: any) => {
+const getPostsByCommentsId = async (userIdFromLocal: number) => {
 
     let foundPosts = [];
 
@@ -173,10 +173,10 @@ const getPostsByCommentsId = async (userIdFromLocal: any) => {
 
 /********************************************************************************/
 
-const updatePost = async (receivedRequest: any, userIdFromLocal: any) => {
+const updatePost = async (receivedRequest: {params: {id: string}, body: {htmlContent: string}}, userIdFromLocal: number) => {
 
     const userId = userIdFromLocal;
-    let modifiedPost: any;
+    let modifiedPost;
 
     try {
         const idInParameters = parseInt(receivedRequest.params.id)
@@ -202,8 +202,8 @@ const updatePost = async (receivedRequest: any, userIdFromLocal: any) => {
 
 /********************************************************************************/
 
-const deletePost = async (receivedRequest: any) => {
-        let deletedPost: any;
+const deletePost = async (receivedRequest: {params: {id: string}}) => {
+        let deletedPost;
         let deletedPostRequest;
     
         try {

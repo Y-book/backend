@@ -4,10 +4,9 @@ const prisma = new PrismaClient();
 
 /********************************************************************************/
 
-const createLike = async (receivedRequest: any,userIdFromLocal: any) => {
+const createLike = async (receivedRequest: {body: {postId: string}},userIdFromLocal: number) => {
 
-    const userId = userIdFromLocal
-    let createdLike: any;
+    let createdLike;
     
     try {
         const requestBody = receivedRequest.body
@@ -31,7 +30,7 @@ const createLike = async (receivedRequest: any,userIdFromLocal: any) => {
 
 const getLikes = async () => {
 
-    let foundLikes: any;
+    let foundLikes;
 
     try {
         const findLikesRequest = await prisma.postLike.findMany()
@@ -45,9 +44,9 @@ const getLikes = async () => {
 
 /********************************************************************************/
 
-const getLikeByPostId = async (receivedRequest: any) => {
+const getLikeByPostId = async (receivedRequest: {params: {id: string}}) => {
 
-    let foundLikes: any;
+    let foundLikes;
 
     try {
         const postId = parseInt(receivedRequest.params.id)
@@ -69,10 +68,9 @@ const getLikeByPostId = async (receivedRequest: any) => {
 
 /********************************************************************************/
 
-const getLikeByPostIdAndUserId = async (receivedRequest: any, userIdFromLocal: any) => {
+const getLikeByPostIdAndUserId = async (receivedRequest: {params: {id: string}}, userIdFromLocal: number) => {
 
-    const userId = userIdFromLocal
-    let foundLikes: any;
+    let foundLikes;
 
     try {
         const findLikesRequest = await prisma.postLike.findMany({
@@ -93,9 +91,9 @@ const getLikeByPostIdAndUserId = async (receivedRequest: any, userIdFromLocal: a
 
 /********************************************************************************/
 
-const deleteLike = async (receivedRequest: any) => {
+const deleteLike = async (receivedRequest: {params: {id: string}}) => {
 
-    let deletedLike: any;
+    let deletedLike;
 
     try {
         const idInParameters = parseInt(receivedRequest.params.id)
@@ -115,7 +113,7 @@ const deleteLike = async (receivedRequest: any) => {
     return deletedLike
 }
 
-const deleteLikesBeforePost = async (receivedRequest: any, idInParameters: any) => {
+const deleteLikesBeforePost = async (receivedRequest: {params: {id: string}}, idInParameters: number) => {
     
     const likes = await getLikeByPostId(receivedRequest)
     

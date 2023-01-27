@@ -3,7 +3,7 @@ import * as notificationService from "../services/notifications-service";
 
 const createFriendshipNotification = async (req: Request, res: Response) => {
 
-    let returnedResponse: any;
+    let returnedResponse;
     let requestBody = req.body;
 
     try {

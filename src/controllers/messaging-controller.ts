@@ -3,7 +3,7 @@ import * as messageService from "../services/messaging-service";
 
 const createMessage = async (req: Request, res: Response) => {
 
-    let returnedResponse: any;
+    let returnedResponse;
     const userIdInResponseLocals = res.locals.user.userId
     let requestBody = req.body;
 
@@ -20,7 +20,7 @@ const createMessage = async (req: Request, res: Response) => {
 
 const getMessagesPerConversation = async (req: Request, res: Response) => {
 
-    let returnedResponse: any;
+    let returnedResponse;
     const idInParameters = parseInt(req.params.id)
 
     try {
@@ -36,7 +36,7 @@ const getMessagesPerConversation = async (req: Request, res: Response) => {
 
 const deleteMessage = async (req: Request, res: Response) => {
 
-    let returnedResponse: any;
+    let returnedResponse;
     let idInParameters = parseInt(req.params.id);
 
     try {

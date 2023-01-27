@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { CognitoJwtVerifier } from "aws-jwt-verify";
 import { RequestHandler } from "express";
 import { getUserByMail } from "../services/user-service";
@@ -31,11 +32,11 @@ const verifyCognito: RequestHandler = async (req, res, next) => {
     if (payload?.email) user = await getUserByMail(payload.email.toString());
 
     //Added the variable userId in the response locals
-    payload["userId"] = user.id;
+    if (user) payload["userId"] = user.id;
 
     next();
   } 
-  catch (err: any) {
+  catch (err: { message: string } | any) {
     res.send(err.message)
   }
 }

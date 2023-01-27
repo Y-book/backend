@@ -3,7 +3,7 @@ import express, { request, Request, Response } from 'express'
 
 const createPost = async (req: Request, res: Response) => {
 
-    let returnedResponse: any;
+    let returnedResponse;
     let requestBody = req.body;
     const userIdInResponseLocals = res.locals.user.userId;
 
@@ -20,20 +20,20 @@ const createPost = async (req: Request, res: Response) => {
 
 const getPosts = async (req: Request, res: Response) => {
     
-        let returnedResponse: any;
-    
-        try {
-            returnedResponse = await postService.getPosts();
-        }
-        catch (error) {
-            throw error;
-        }
-        res.status(200).send(returnedResponse);
+    let returnedResponse;
+
+    try {
+        returnedResponse = await postService.getPosts();
+    }
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
 }
 
 const getPostsByUserId = async (req: Request, res: Response) => {
     
-    let returnedResponse: any;
+    let returnedResponse;
     const userIdInResponseLocals = res.locals.user.userId;
 
     try {
@@ -47,7 +47,7 @@ const getPostsByUserId = async (req: Request, res: Response) => {
 
 const getPostsByLikesId = async (req: Request, res: Response) => {
     
-    let returnedResponse: any;
+    let returnedResponse;
     const userIdInResponseLocals = res.locals.user.userId;
 
     try {
@@ -61,7 +61,7 @@ const getPostsByLikesId = async (req: Request, res: Response) => {
 
 const getPostsByCommentsId = async (req: Request, res: Response) => {
     
-    let returnedResponse: any;
+    let returnedResponse;
     const userIdInResponseLocals = res.locals.user.userId;
 
     try {
@@ -75,10 +75,10 @@ const getPostsByCommentsId = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const updatePost = async (req: Request, res: Response) => {
+const updatePost = async (req: { params: { id: string; }, body: { htmlContent: string; } }, res: Response) => {
 
     const userIdInResponseLocals = res.locals.user.userId;
-    let returnedResponse: any;
+    let returnedResponse;
 
     try {
         returnedResponse = await postService.updatePost(req, userIdInResponseLocals);
@@ -92,18 +92,18 @@ const updatePost = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const deletePost = async (req: Request, res: Response) => {
+const deletePost = async (req: { params: { id: string; } }, res: Response) => {
         
-            let returnedResponse: any;
-        
-            try {
-                returnedResponse = await postService.deletePost(req);
-            }
-            catch (error) {
-                throw error;
-            }
-        
-            res.status(200).send(returnedResponse);
+    let returnedResponse;
+
+    try {
+        returnedResponse = await postService.deletePost(req);
+    }
+    catch (error) {
+        throw error;
+    }
+
+    res.status(200).send(returnedResponse);
 }
 
 export { createPost, 

@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const createFriendshipNotification = async (requestBody: any) => {
+const createFriendshipNotification = async (requestBody: Request) => {
     
-        let createdNotification: any;
+        let createdNotification;
     
         try {
             const notificationToCreate = await prisma.notification.create({

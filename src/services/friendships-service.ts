@@ -24,7 +24,7 @@ const createFriendship = async (requestBody: any, userIdFromLocal: any) => {
 
 /********************************************************************************/
 
-const getFriendshipsByUserId = async (receivedRequest: any, userIdFromLocal: any) => {
+const getFriendshipsByUserId = async (userIdFromLocal: any) => {
 
     try {
         const findFriendshipsRequest = await prisma.friendship.findMany(
@@ -73,7 +73,7 @@ const getFriendshipsByUserId = async (receivedRequest: any, userIdFromLocal: any
 
 const getFriendships = async () => {
 
-    let foundFriendships: any;
+    let foundFriendships;
 
     try {
         const findFriendshipsRequest = await prisma.friendship.findMany()
@@ -86,10 +86,8 @@ const getFriendships = async () => {
     return foundFriendships
 }
 
-/********************************************************************************/
-
-const deleteFriendship = async (receivedRequest: any) => {
-    let deletedFriendship: any;
+const deleteFriendship = async (receivedRequest: {params: {id: string}}) => {
+        let deletedFriendship;
 
     try {
         const idInParameters = parseInt(receivedRequest.params.id)
@@ -109,8 +107,8 @@ const deleteFriendship = async (receivedRequest: any) => {
 
 /********************************************************************************/
 
-const updateFriendship = async (receivedRequest: any, userIdFromLocal: number) => {
-    let updatedFriendship: any;
+const updateFriendship = async (receivedRequest: {body: {fromId: number, status: string | any}}, userIdFromLocal: number) => {
+    let updatedFriendship;
 
     try {
         const updatedFriendshipRequest = await prisma.friendship.updateMany({
