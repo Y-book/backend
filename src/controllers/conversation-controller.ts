@@ -21,17 +21,30 @@ const createConversation = async (req: Request, res: Response) => {
 
 const getConversations = async (req: Request, res: Response) => {
             
-                const userIdInResponseLocals = res.locals.user.userId
-                let returnedResponse;
-            
-                try {
-                    returnedResponse = await conversationService.getConversations(userIdInResponseLocals);
-                } 
-                catch (error) {
-                    throw error;
-                }
-                res.status(200).send(returnedResponse);
-            }
+    const userIdInResponseLocals = res.locals.user.userId
+    let returnedResponse;
+
+    try {
+        returnedResponse = await conversationService.getConversations(userIdInResponseLocals);
+    } 
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
+}
+
+const getConversationById = async (req: { params: { id: string } }, res: Response) => {
+
+    let returnedResponse;
+
+    try {
+        returnedResponse = await conversationService.getConversationById(req);
+    } 
+    catch (error) {
+        throw error;
+    }
+    res.status(200).send(returnedResponse);
+}
 
 /********************************************************************************/
 
@@ -51,5 +64,6 @@ const deleteConversation = async (req: { params: { id: string } }, res: Response
 export {
     createConversation,
     getConversations,
+    getConversationById,
     deleteConversation,
 }

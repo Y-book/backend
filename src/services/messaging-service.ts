@@ -2,14 +2,14 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const createMessage = async (userIdFromLocal: number, requestBody: {conversationId: number, content: string}) => {
+const createMessage = async (userIdFromLocal: number, requestBody: {conversationId: string, content: string}) => {
 
     let createdMessage;
 
     try {
         const messageToCreate = await prisma.conversationMessage.create({
             data: {
-                conversationId: requestBody.conversationId,
+                conversationId: parseInt(requestBody.conversationId, 10),
                 userId: userIdFromLocal,
                 content: requestBody.content,
             }
