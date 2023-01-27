@@ -37,7 +37,7 @@ const getConversations = async (req: Request, res: Response) => {
 
 const deleteConversation = async (req: { params: { id: string } }, res: Response) => {
 
-    let returnedResponse: any;
+    let returnedResponse;
 
     try {
         returnedResponse = await conversationService.deleteConversation(req);

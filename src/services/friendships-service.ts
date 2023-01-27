@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const createFriendship = async (requestBody: any, userIdFromLocal: any) => {
+const createFriendship = async (requestBody: {toId: string}, userIdFromLocal: number) => {
 
-    let createdFriendship: any;
+    let createdFriendship;
 
     try {
         const friendshipToCreate = await prisma.friendship.create({
@@ -24,7 +24,7 @@ const createFriendship = async (requestBody: any, userIdFromLocal: any) => {
 
 /********************************************************************************/
 
-const getFriendshipsByUserId = async (userIdFromLocal: any) => {
+const getFriendshipsByUserId = async (userIdFromLocal: number) => {
 
     try {
         const findFriendshipsRequest = await prisma.friendship.findMany(

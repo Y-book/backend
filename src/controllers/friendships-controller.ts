@@ -68,7 +68,7 @@ const updateFriendship = async (req: Request, res: Response) => {
         returnedResponse = await friendshipsService.updateFriendship(req, userIdInResponseLocals);
         res.status(200).send(returnedResponse);
     }
-    catch (error: any) {
+    catch (error: {message: string} | any) {
         res.status(400).send(error.message);
     }
 }
