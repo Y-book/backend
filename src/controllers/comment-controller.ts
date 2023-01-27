@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express'
 
 const createComment = async (req: Request, res: Response) => {
 
-    let returnedResponse: any;
+    let returnedResponse;
     let requestBody = req.body;
     const userIdInResponseLocals = res.locals.user.userId;
 
@@ -21,7 +21,7 @@ const createComment = async (req: Request, res: Response) => {
 
 const getComments = async (req: Request, res: Response) => {
     
-        let returnedResponse: any;
+        let returnedResponse;
     
         try {
             returnedResponse = await commentService.getComments();
@@ -34,9 +34,9 @@ const getComments = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const getCommentsByPostId = async (req: Request, res: Response) => {
+const getCommentsByPostId = async (req: { params: { id: string; } }, res: Response) => {
     
-    let returnedResponse: any;
+    let returnedResponse;
 
     try {
         returnedResponse = await commentService.getCommentsByPostId(req);
@@ -49,9 +49,9 @@ const getCommentsByPostId = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const updateComment = async (req: Request, res: Response) => {
+const updateComment = async (req: { params: { id: string; }; body: { text: string; postId: number; }; }, res: Response) => {
     
-        let returnedResponse: any;
+        let returnedResponse;
         const userIdInResponseLocals = res.locals.user.userId;
     
         try {
@@ -68,7 +68,7 @@ const updateComment = async (req: Request, res: Response) => {
 
 const deleteComment = async (req: Request, res: Response) => {
         
-            let returnedResponse: any;
+            let returnedResponse;
         
             try {
                 returnedResponse = await commentService.deleteComment(parseInt(req.params.id, 10));

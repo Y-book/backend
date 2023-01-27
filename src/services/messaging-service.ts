@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const createMessage = async (userIdFromLocal: number, requestBody: any) => {
+const createMessage = async (userIdFromLocal: number, requestBody: {conversationId: number, content: string}) => {
 
-    let createdMessage: any;
+    let createdMessage;
 
     try {
         const messageToCreate = await prisma.conversationMessage.create({
@@ -27,7 +27,7 @@ const createMessage = async (userIdFromLocal: number, requestBody: any) => {
 
 const getMessagesPerConversation = async (receivedIdFromParams: number) => {
 
-    let foundMessages: any;
+    let foundMessages;
 
     try {
         const findMessagesRequest = await prisma.conversationMessage.findMany({
@@ -46,7 +46,7 @@ const getMessagesPerConversation = async (receivedIdFromParams: number) => {
 
 const deleteMessage = async (idInParameters: number) => {
 
-    let deletedMessage: any;
+    let deletedMessage;
 
     try {
 

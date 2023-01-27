@@ -4,10 +4,10 @@ const prisma = new PrismaClient();
 
 /********************************************************************************/
 
-const createComment = async (requestBody: any, userIdFromLocal: any) => {
+const createComment = async (requestBody: {postId: string, text: string}, userIdFromLocal: number) => {
 
     const userId = userIdFromLocal
-    let createdComment: any;
+    let createdComment;
 
     try {
         const commentToCreate = await prisma.postComment.create({
@@ -29,7 +29,7 @@ const createComment = async (requestBody: any, userIdFromLocal: any) => {
 
 const getComments = async () => {
 
-    let foundComments: any;
+    let foundComments;
 
     try {
         const findCommentsRequest = await prisma.postComment.findMany()
@@ -43,9 +43,9 @@ const getComments = async () => {
 
 /********************************************************************************/
 
-const getCommentsByPostId = async (receivedRequest: any) => {
+const getCommentsByPostId = async (receivedRequest: {params: {id: string}}) => {
 
-    let foundComments: any;
+    let foundComments;
 
     try {
 
@@ -68,10 +68,9 @@ const getCommentsByPostId = async (receivedRequest: any) => {
 
 /********************************************************************************/
 
-const updateComment = async (receivedRequest: any, userIdFromLocal: any) => {
+const updateComment = async (receivedRequest: {params: {id: string}, body: {text: string, postId: number}}, userIdFromLocal: number) => {
 
-    const userId = userIdFromLocal;
-    let modifiedComment: any;
+    let modifiedComment;
 
     try {
         const idInParameters = parseInt(receivedRequest.params.id)
@@ -84,7 +83,7 @@ const updateComment = async (receivedRequest: any, userIdFromLocal: any) => {
             },
             data: {
                 text: requestBody.text,
-                userId: userId,
+                userId: userIdFromLocal,
                 postId: requestBody.postId,
             },
         })
@@ -100,7 +99,7 @@ const updateComment = async (receivedRequest: any, userIdFromLocal: any) => {
 
 const deleteComment = async (commentId: number) => {
         
-        let deletedComment: any;        
+        let deletedComment;        
     
         try {
             const deletedCommentRequest = await prisma.postComment.delete({
@@ -118,7 +117,7 @@ const deleteComment = async (commentId: number) => {
 
 /********************************************************************************/
 
-const deleteCommentsBeforePost = async (receivedRequest: any, idInParameters: any) => {
+const deleteCommentsBeforePost = async (receivedRequest: { params: { id: string; }; }, idInParameters: number) => {
     const comments = await getCommentsByPostId(receivedRequest)
     if (comments.length > 0) {
         await prisma.postComment.deleteMany({

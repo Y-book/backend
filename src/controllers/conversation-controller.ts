@@ -3,7 +3,7 @@ import * as conversationService from "../services/conversation-service";
 
 const createConversation = async (req: Request, res: Response) => {
     
-        let returnedResponse: any;
+        let returnedResponse;
         const userIdInResponseLocals = res.locals.user.userId
         let requestBody = req.body;
 
@@ -22,7 +22,7 @@ const createConversation = async (req: Request, res: Response) => {
 const getConversations = async (req: Request, res: Response) => {
             
                 const userIdInResponseLocals = res.locals.user.userId
-                let returnedResponse: any;
+                let returnedResponse;
             
                 try {
                     returnedResponse = await conversationService.getConversations(userIdInResponseLocals);
@@ -35,7 +35,7 @@ const getConversations = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const deleteConversation = async (req: Request, res: Response) => {
+const deleteConversation = async (req: { params: { id: string } }, res: Response) => {
 
     let returnedResponse: any;
 
@@ -47,7 +47,6 @@ const deleteConversation = async (req: Request, res: Response) => {
     }
     res.status(200).send(returnedResponse);
 }
-
 
 export {
     createConversation,

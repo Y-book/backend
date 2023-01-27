@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 
 const createLike = async (req: Request, res: Response) => {
     
-    let returnedResponse: any;
+    let returnedResponse;
     const userIdInResponseLocals = res.locals.user.userId;
 
     try {
@@ -20,7 +20,7 @@ const createLike = async (req: Request, res: Response) => {
 
 const getLikes = async (req: Request, res: Response) => {
     
-    let returnedResponse: any;
+    let returnedResponse;
 
     try {
         returnedResponse = await postLikeServices.getLikes();
@@ -33,9 +33,9 @@ const getLikes = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const getLikeByPostIdAndUserId = async (req: Request, res: Response) => {
+const getLikeByPostIdAndUserId = async (req: { params: { id: string } }, res: Response) => {
     
-    let returnedResponse: any;
+    let returnedResponse;
     const userIdInResponseLocals = res.locals.user.userId;
 
     try {
@@ -49,9 +49,9 @@ const getLikeByPostIdAndUserId = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const getLikeByPostId = async (req: Request, res: Response) => {
+const getLikeByPostId = async (req: { params: { id: string } }, res: Response) => {
     
-    let returnedResponse: any;
+    let returnedResponse;
 
     try {
         returnedResponse = await postLikeServices.getLikeByPostId(req);
@@ -64,9 +64,9 @@ const getLikeByPostId = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const deleteLike = async (req: Request, res: Response) => {
+const deleteLike = async (req: { params: { id: string } }, res: Response) => {
 
-    let returnedResponse: any;
+    let returnedResponse;
 
     try {
         returnedResponse = await postLikeServices.deleteLike(req);

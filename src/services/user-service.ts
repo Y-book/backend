@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const createUser = async (requestBody: any) => {
+const createUser = async (requestBody: {firstname: string, lastname: string, email: string}) => {
 
-let createdUser: any;
+let createdUser;
 
 try {
     const userToCreate = await prisma.user.create({
@@ -27,7 +27,7 @@ try {
 
 const getUsers = async () => {
 
-    let foundUsers: any;
+    let foundUsers;
 
     try {
         const findUsersRequest = await prisma.user.findMany()
@@ -42,9 +42,9 @@ const getUsers = async () => {
 
 /********************************************************************************/
 
-const getUserById = async (receivedRequest: any) => {
+const getUserById = async (receivedRequest: {params: {id: string}}) => {
 
-    let foundUser: any;    
+    let foundUser;    
 
     try {
 
@@ -66,9 +66,9 @@ const getUserById = async (receivedRequest: any) => {
 }
 
 
-const getConnectedUserById = async (receivedRequest: any, userIdFromLocal: any) => {
+const getConnectedUserById = async (userIdFromLocal: number) => {
 
-    let foundUser: any;    
+    let foundUser;    
 
     try {
 
@@ -89,7 +89,7 @@ const getConnectedUserById = async (receivedRequest: any, userIdFromLocal: any) 
 
 const getUserByMail = async (mail: string) => {
 
-    let foundUser: any;
+    let foundUser;
 
     try {
 
@@ -110,9 +110,9 @@ const getUserByMail = async (mail: string) => {
 
 /********************************************************************************/
 
-const getUsersWithResearch = async (receivedRequest: any) => {
+const getUsersWithResearch = async (receivedRequest: {body: {research: string}}) => {
     
-        let foundUsers: any;
+        let foundUsers;
     
         try {
     
@@ -209,9 +209,9 @@ const getUsersWithResearch = async (receivedRequest: any) => {
 
 /********************************************************************************/
 
-const updateUser = async (receivedRequest: any) => {
+const updateUser = async (receivedRequest: {params: {id: string}, body: {firstname: string, lastname: string, email: string}}) => {
 
-    let modifiedUser: any;
+    let modifiedUser;
 
     try {
     const idInParameters = parseInt(receivedRequest.params.id)
@@ -240,9 +240,9 @@ const updateUser = async (receivedRequest: any) => {
 
 /********************************************************************************/
 
-const deleteUser = async (receivedRequest: any) => {
+const deleteUser = async (receivedRequest: {params: {id: string}}) => {
 
-    let deletedUser: any;
+    let deletedUser;
 
     try {
         const idInParameters = parseInt(receivedRequest.params.id)
