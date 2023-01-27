@@ -25,13 +25,13 @@ const createMessage = async (userIdFromLocal: number, requestBody: any) => {
 
 /********************************************************************************/
 
-const getMessagesPerConversation = async (receivedRequestParams: number) => {
+const getMessagesPerConversation = async (receivedIdFromParams: number) => {
 
     let foundMessages: any;
 
     try {
         const findMessagesRequest = await prisma.conversationMessage.findMany({
-            where: { conversationId: receivedRequestParams }
+            where: { conversationId: receivedIdFromParams }
         })
 
         foundMessages = findMessagesRequest
