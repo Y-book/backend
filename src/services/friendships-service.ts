@@ -58,6 +58,7 @@ const getFriendshipsByUserId = async (receivedRequest: any, userIdFromLocal: any
                                     }
                                 }
                             )
+                            
                             return findFriendshipsRequest;                    
         
                         } 
@@ -121,6 +122,61 @@ const updateFriendship = async (receivedRequest: any, userIdFromLocal: number) =
             })
 
             updatedFriendship = updatedFriendshipRequest
+
+            
+            const findModifiedFriendship = await prisma.friendship.findMany({
+                where: { AND: [
+                    {
+                        toId: userIdFromLocal
+                    },
+                    {
+                        fromId: receivedRequest.body.fromId
+                    }
+                ] 
+            },
+            })
+
+            const findExistingConversation = await prisma.conversation.findMany({
+                where: {
+                    OR: [{
+                        AND: [
+                            {
+                                fromId: userIdFromLocal
+                            },
+                            {
+                                toId: receivedRequest.body.fromId
+                            }
+                        ]
+                    },
+                    {
+                        AND: [
+                            {
+                                fromId: receivedRequest.body.fromId
+                            },
+                            {
+                                toId: userIdFromLocal
+                            }
+                        ]
+                    }]
+                }
+            })
+
+            //prisma findMany returns an array
+            if(findExistingConversation.length > 0){
+                throw new Error("Conversation already exists");
+            }
+
+            //Check if the status is ACCEPTED, if so, create a conversation
+            if(findModifiedFriendship[0].status === "ACCEPTED"){
+                await prisma.conversation.create({
+                    data: {
+                        fromId: userIdFromLocal,
+                        toId: findModifiedFriendship[0].fromId,
+                    }
+                })
+            }
+
+
         } catch (error) {
             throw error
         }
