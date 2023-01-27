@@ -54,11 +54,11 @@ const deleteFriendship = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await friendshipsService.deleteFriendship(req);
+        res.status(200).send(returnedResponse);
     }
     catch (error) {
         throw error;
     }
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
