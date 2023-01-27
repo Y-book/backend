@@ -8,6 +8,7 @@ ConversationRouter
     .use(verifyCognito)
     .post("/", conversationController.createConversation)
     .get("/", conversationController.getConversations)
+    .get("/:id", conversationController.getConversationById)
     .delete("/:id", conversationController.deleteConversation)
 
 export default ConversationRouter

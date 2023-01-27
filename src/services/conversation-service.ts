@@ -32,6 +32,41 @@ const getConversations = async (userIdFromLocal: number) => {
                 {fromId: userIdFromLocal},
                 {toId: userIdFromLocal}
             ]
+            },
+            include: {
+                from: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                },
+                to: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                },
+                messages: {
+                    select: {
+                        id: true,
+                        content: true,
+                        createdAt: true,
+                        updatedAt: true,
+                        userId: true,
+                        from: {
+                            select: {
+                                id: true,
+                                email: true,
+                                firstname: true,
+                                lastname: true,
+                            }
+                        },
+                    }
+                }
             }
         })
 
@@ -40,6 +75,60 @@ const getConversations = async (userIdFromLocal: number) => {
         throw error
     }
     return foundConversations
+}
+
+const getConversationById = async (receivedRequest: {params: {id: string}}) => {
+    let foundConversation;
+
+    const idInParameters = parseInt(receivedRequest.params.id)
+
+    try {
+        const findConversationRequest = await prisma.conversation.findUnique({
+            where: {
+                id: idInParameters
+            },
+            include: {
+                from: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                },
+                to: {
+                    select: {
+                        id: true,
+                        email: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                },
+                messages: {
+                    select: {
+                        id: true,
+                        content: true,
+                        createdAt: true,
+                        updatedAt: true,
+                        userId: true,
+                        from: {
+                            select: {
+                                id: true,
+                                email: true,
+                                firstname: true,
+                                lastname: true,
+                            }
+                        },
+                    }
+                }
+            }
+        })
+
+        foundConversation = findConversationRequest
+    } catch (error) {
+        throw error
+    }
+    return foundConversation
 }
 
 /********************************************************************************/
@@ -66,5 +155,6 @@ const deleteConversation = async (receivedRequest: {params: {id: string}}) => {
 export {
     createConversation,
     getConversations,
+    getConversationById,
     deleteConversation,
 }
