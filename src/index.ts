@@ -6,6 +6,7 @@
 import app from "./app"
 import d from "debug"
 import http from "http"
+import { Server } from "socket.io"
 const debug = d('express-generator:server')
 
 
@@ -21,6 +22,29 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+io.on("connection", (socket) => {
+  console.log("socket id : ", socket.id)
+
+  socket.on("conv", (data) => {
+    console.log(`User ${socket.id} joined room ${data}`)
+    socket.join(data)
+  })
+
+  socket.on('send_message', (data) => {
+    socket.to(data.conversationId).emit('receive_message')
+  })
+
+  socket.on('disconnect', () => {
+    console.log("user disconnected : ", socket.id)
+    })
+});
 
 /**
  * Listen on provided port, on all network interfaces.
