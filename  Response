@@ -1,0 +1,492 @@
+[33mcommit 3e83f755f9059ded57bb4c4270493759f79238a7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/nettoyage2[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/correction[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mnettoyage2[m[33m, [m[1;32mcorrection[m[33m)[m
+Merge: 5648072 09a3780
+Author: benoitbelloc <93647590+benoitbelloc@users.noreply.github.com>
+Date:   Thu Feb 9 09:30:21 2023 +0100
+
+    Merge pull request #7 from Y-book/nettoyage
+    
+    nettoyage
+
+[33mcommit 09a37803ea63875e83ce6589ac8cc9201f3ef2df[m[33m ([m[1;31morigin/nettoyage[m[33m, [m[1;32mnettoyage[m[33m)[m
+Author: benoitbelloc <benoit.belloc@ynov.com>
+Date:   Thu Feb 9 09:28:16 2023 +0100
+
+    nettoyage
+
+[33mcommit 5648072fb05a74b0801b8981328db23b27b8e570[m
+Merge: 59d0b1d 91a12a1
+Author: Laura398 <80258767+Laura398@users.noreply.github.com>
+Date:   Sun Jan 29 18:37:34 2023 +0100
+
+    Merge pull request #6 from Y-book/socket-try
+    
+    socket io working
+
+[33mcommit 91a12a16f69763c1d62d1f676eb773424b95279a[m[33m ([m[1;31morigin/socket-try[m[33m)[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Sun Jan 29 18:15:13 2023 +0100
+
+    socket io working
+
+[33mcommit 59d0b1db594a18193270513703194ded23241b69[m
+Merge: 00499f6 f53bfe3
+Author: Laura398 <80258767+Laura398@users.noreply.github.com>
+Date:   Fri Jan 27 17:05:09 2023 +0100
+
+    Merge pull request #5 from Y-book/conversations-and-messages
+    
+    Add get conversation by id
+
+[33mcommit f53bfe39343386306593c5c052160cf2cb5b5de6[m[33m ([m[1;31morigin/conversations-and-messages[m[33m)[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Fri Jan 27 17:02:50 2023 +0100
+
+    Add get conversation by id
+
+[33mcommit 00499f6cdd964a48ee06a7af3e5b58a7d3667fb6[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Fri Jan 27 11:44:30 2023 +0100
+
+    add user data in post and comment find
+
+[33mcommit c397e3985a5814512c4ad427fb560edbd2e2ee33[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Fri Jan 27 10:45:58 2023 +0100
+
+    delete missed any
+
+[33mcommit e57651fb5cac4e1b986d3f95fb3b85c627fc7db6[m
+Merge: 3e2493a 7da5364
+Author: Laura398 <80258767+Laura398@users.noreply.github.com>
+Date:   Fri Jan 27 10:38:57 2023 +0100
+
+    Merge pull request #4 from Y-book/delete-any
+    
+    Delete any
+
+[33mcommit 7da53643c0ecbbfaa25bf2b62a556f735c28ca3c[m[33m ([m[1;31morigin/delete-any[m[33m)[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Fri Jan 27 09:58:45 2023 +0100
+
+    Delete any
+
+[33mcommit 3e2493a64258612f1d838590141ecfee8fe72b9b[m[33m ([m[1;31morigin/conversation-configuration[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 27 09:53:14 2023 +0100
+
+    improved code layout
+
+[33mcommit 44c52dabc81d723409234ba2476a5939d49a206c[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 27 09:50:40 2023 +0100
+
+    changed bad code placement
+
+[33mcommit e737e44c449681353aebda41d8ee487dc905e4d6[m
+Merge: aac1c29 b5fd8b6
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 27 09:47:13 2023 +0100
+
+    Merge branch 'messaging-configuration'
+
+[33mcommit b5fd8b666ef9ecf68c8fd9065ff976b7337be510[m[33m ([m[1;31morigin/messaging-configuration[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 27 09:46:57 2023 +0100
+
+    renamed a variable
+
+[33mcommit aac1c2948ba8bc760e0e7c66f6ea53ec5b4093cc[m[33m ([m[1;31morigin/prevent-conversations-with-unaccepted-friendships[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 27 09:26:05 2023 +0100
+
+    added conversation duplicates
+
+[33mcommit 0d900401fd6ab738f72801b08715be3277e732f0[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 26 15:05:52 2023 +0100
+
+    removed selection
+
+[33mcommit c2306ef1352bd8e75476ae949f8dd6349ab2baab[m
+Merge: 4ae93ce f57ff53
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 26 14:57:49 2023 +0100
+
+    Merge branch 'main' of https://github.com/Y-book/backend
+
+[33mcommit 4ae93ce5bcbce704836e5fef90abd7ed3ed6a84b[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 26 14:56:37 2023 +0100
+
+    added messages handling
+
+[33mcommit f57ff536ac619ec06255b942d5302e42eaf7c32f[m[33m ([m[1;32mfriendship[m[33m)[m
+Merge: ae0f845 0a0959a
+Author: Laura398 <80258767+Laura398@users.noreply.github.com>
+Date:   Thu Jan 26 12:31:41 2023 +0100
+
+    Merge pull request #3 from Y-book/friendship-ask
+    
+    search for people and send friendship request
+
+[33mcommit 0a0959ae47f60e8215f4f904d92f9fc3fafffc2c[m[33m ([m[1;31morigin/friendship-ask[m[33m)[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Thu Jan 26 12:26:22 2023 +0100
+
+    search for people and send friendship request
+
+[33mcommit ae0f845ab2bf723cc99c096b72cc4e79585851eb[m
+Merge: 11003cc dd9baa6
+Author: benoitbelloc <93647590+benoitbelloc@users.noreply.github.com>
+Date:   Thu Jan 26 12:23:05 2023 +0100
+
+    Merge pull request #2 from Y-book/friendship
+    
+    request friend
+
+[33mcommit dd9baa6f907013578cab68b4b959100d39c4349f[m[33m ([m[1;31morigin/friendship[m[33m)[m
+Author: benoitbelloc <benoit.belloc@ynov.com>
+Date:   Thu Jan 26 12:22:12 2023 +0100
+
+    request friend
+
+[33mcommit 1b744795c35c7f3145a8ab71c0f17be1a4dd2a24[m
+Merge: 11003cc 3eef793
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 26 11:07:03 2023 +0100
+
+    Merge branch 'conversation-configuration'
+
+[33mcommit 3eef793f25937e4ecf0776176376f47b4a9e1b47[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 26 11:06:42 2023 +0100
+
+    added the condition where the conversation must be retrieved weither the conversation was sent or gotten
+
+[33mcommit 11003ccf152cd0f2e27d7274d74ab443656cdb74[m
+Merge: a78bd65 40848bf
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 26 10:55:40 2023 +0100
+
+    Merge branch 'conversation-configuration'
+
+[33mcommit 40848bf93fffb8c17d19a082543515e5fc220496[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 26 10:54:57 2023 +0100
+
+    added conversation container fetch and creation
+
+[33mcommit a78bd651e8a8afd966de92df05c75ce9b4aab574[m[33m ([m[1;31morigin/search-filter[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 26 08:48:17 2023 +0100
+
+    added user research with a connected account
+
+[33mcommit a3aed7264c118b7d88b2a66659d10c2549b4ddf8[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Wed Jan 25 22:12:46 2023 +0100
+
+    added search function to find potential friends
+
+[33mcommit 10c5ffb1222fde3cdfef01a504f73039b0c9f67a[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Wed Jan 25 15:46:34 2023 +0100
+
+    first notifications code draft
+
+[33mcommit 6dc03227a347fe7e4f12b77b12b032cdf3aae4b6[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Fri Jan 20 21:34:06 2023 +0100
+
+    modify getFriendshipsByUserId to get to and from info directly
+
+[33mcommit fe2a1cccf7ef43503fe9da16e4b61ff2f9a87c41[m
+Merge: f289b44 23f7972
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Fri Jan 20 13:49:20 2023 +0100
+
+    Merge branch 'main' of https://github.com/Y-book/backend
+
+[33mcommit f289b443333a1aecfb344e5a0bbcfef713e7c77a[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Fri Jan 20 13:49:11 2023 +0100
+
+    working profile page
+
+[33mcommit 23f7972d2312cf23476caedfeae56db6e730fad7[m
+Merge: 6ea3355 610be96
+Author: benoitbelloc <benoit.belloc@ynov.com>
+Date:   Fri Jan 20 13:44:06 2023 +0100
+
+    Merge branch 'main' of https://github.com/Y-book/backend into friendship
+
+[33mcommit 6ea33554ce336fd393a1f3f61cf8d8efd2243084[m
+Author: benoitbelloc <benoit.belloc@ynov.com>
+Date:   Fri Jan 20 13:32:17 2023 +0100
+
+    ami token
+
+[33mcommit 5f5ae2e3b67067a052088a674047f99a424fc04a[m
+Author: benoitbelloc <benoit.belloc@ynov.com>
+Date:   Fri Jan 20 08:41:52 2023 +0100
+
+    normalement ca devrait reparer...
+
+[33mcommit 610be96837e2d924d474e258f86d7333e3644f7b[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Thu Jan 19 13:19:08 2023 +0100
+
+    Correction delete postLike
+
+[33mcommit 72fd546a9451bc328ba1c5a6948761e7ce198bd5[m
+Merge: 90b3743 4777eaf
+Author: benoitbelloc <benoit.belloc@ynov.com>
+Date:   Thu Jan 19 09:15:39 2023 +0100
+
+    Merge branch 'main' of https://github.com/Y-book/backend into friendship
+
+[33mcommit 90b3743f8024172b58cfeb351239a6d7f5e17172[m
+Author: benoitbelloc <benoit.belloc@ynov.com>
+Date:   Thu Jan 19 08:47:10 2023 +0100
+
+    debut liste amis
+
+[33mcommit 4777eaf3c4af7f2d629117aac6e85cf2b95bd575[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Tue Jan 17 15:58:48 2023 +0100
+
+    added elements for better readability
+
+[33mcommit b96ec3eeb7e645a771098bd793f6d9029daefe87[m
+Merge: e3633dd 250b6cb
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Tue Jan 17 15:41:41 2023 +0100
+
+    Merge branch 'main' of https://github.com/Y-book/backend
+
+[33mcommit e3633dd607063e79c07858892b57a6cde51d35e3[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Tue Jan 17 15:41:35 2023 +0100
+
+    added verify cognito
+
+[33mcommit 250b6cbfb873fd2bb8aab8b709b7a8bd91b89e42[m
+Merge: 41ada6f 365ec97
+Author: Laura398 <80258767+Laura398@users.noreply.github.com>
+Date:   Mon Jan 16 00:57:05 2023 +0100
+
+    Merge pull request #1 from Y-book/likes-and-comments
+    
+    Likes and comments
+
+[33mcommit 365ec97ee08c110572622663a8aee9fde995a0c6[m[33m ([m[1;31morigin/likes-and-comments[m[33m)[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Mon Jan 16 00:56:20 2023 +0100
+
+    likes and posts and connect with back auth
+
+[33mcommit c47c1994b9c0a0e663667d8c3561b65353d10130[m
+Author: laura398 <lauramathieu.git@gmail.com>
+Date:   Sun Jan 8 20:10:24 2023 +0100
+
+    Working likes and comments
+
+[33mcommit 41ada6f0a82fee599fe7d32a51035aa092138c21[m[33m ([m[1;31morigin/AWS-configuration[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 13 17:13:54 2023 +0100
+
+    added jwt-aws-verify, added middleware to post routes
+
+[33mcommit 014ea061b163d87bb409ac844f1d32a04565b818[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 6 16:41:03 2023 +0100
+
+    removed useless file
+
+[33mcommit 764e69cfff2118b02ac9f47019238dc123db7555[m
+Merge: 8468bff 3972de7
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 6 09:12:45 2023 +0100
+
+    resoleved conflicts in app
+
+[33mcommit 3972de7baee6c90c6aa0485d8f12a55c85440785[m[33m ([m[1;31morigin/user-crud[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 6 09:08:11 2023 +0100
+
+    added request to find an unique user by providing an id
+
+[33mcommit 8d462d40d87066b9fb6ff38598ad4058d46d65dc[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 6 08:53:59 2023 +0100
+
+    removed duplicated dependancies
+
+[33mcommit 4faa1dd98711a0101d69b42fc4044aaa06b208ad[m[33m ([m[1;31morigin/post-crud[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Jan 6 08:49:11 2023 +0100
+
+    added basic CRUD for posts
+
+[33mcommit bb0b337d6412892c164f72e01f98c9434260b9df[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 5 11:24:46 2023 +0100
+
+    added post and get for pots
+
+[33mcommit 329b7964ad771fb3909afbb3af0c0a9e805b58cd[m[33m ([m[1;32maddFriend[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 5 10:00:48 2023 +0100
+
+    removed unwanted files
+
+[33mcommit c3a022f5ae882d053ec9577ef8392c37036fd991[m
+Merge: 81d3615 7b6f81f
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 5 09:59:32 2023 +0100
+
+    Merge branch 'main' of https://github.com/Y-book/backend
+
+[33mcommit 81d36155e917294b81a280aeb5781c80f6a93c13[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 5 09:58:54 2023 +0100
+
+    added changes to user crud
+
+[33mcommit e5fca29dda127e421c2b2fa488523b9ccb63133b[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 5 09:57:27 2023 +0100
+
+    added needed modifications
+
+[33mcommit 0add2aaaf515a10b3cdfd5f6312e8d5af23a36e1[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 5 09:51:00 2023 +0100
+
+    removed useless modification
+
+[33mcommit 7b6f81facf5fe9470646e06c5cc8f492c392e7fb[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Jan 5 09:40:53 2023 +0100
+
+    started crud
+
+[33mcommit ef65c39f57840cd434fa58cc146ca21949b2dd79[m[33m ([m[1;31morigin/post-comments-crud[m[33m)[m
+Merge: ce61b76 f4159b9
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Tue Jan 3 16:16:17 2023 +0100
+
+    Merge branch 'user-crud'
+
+[33mcommit f4159b99a672e1e40120e4ffe3b00d13be5fcf9e[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Tue Jan 3 15:20:43 2023 +0100
+
+    added error handling squeleton
+
+[33mcommit ce61b76e3c6e15484ab347e7616a44d64cc1549d[m[33m ([m[1;31morigin/cors-handling[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Fri Dec 16 14:46:50 2022 +0100
+
+    added cors library
+
+[33mcommit 8468bff0f017900779c23bc94d9fd2f3b6e0b837[m
+Merge: 78eb7c3 8411a62
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 15 12:14:14 2022 +0100
+
+    resolved conflicts
+
+[33mcommit 8411a621ebea5bda439873c96022849fe2271aab[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 15 11:49:06 2022 +0100
+
+    first draft of the user CRUD
+
+[33mcommit 8a3650181cc4e203215f87859590b2d6ce2a4751[m
+Merge: 60a7f10 44f85d7
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 8 10:00:36 2022 +0100
+
+    merged prisma changes
+
+[33mcommit 44f85d7341e528f01ee0837ee781f0fb5397b67c[m
+Author: Julien FERAND <hello@julienferand.dev>
+Date:   Thu Dec 1 16:24:20 2022 +0100
+
+    added content in conversationMessages SQL Migration
+
+[33mcommit 0b26d193a4160b9fd6f81c375cbc0af41a233ba6[m
+Merge: 6c41d65 3daf623
+Author: Julien Ferand <hello@julienferand.dev>
+Date:   Thu Dec 1 16:23:08 2022 +0100
+
+    Merge pull request #4 from Mathis-Deconchat/main
+    
+    Added content column for conversationMessages and lowercase Notification
+
+[33mcommit 3daf6236cf8dc0f1f2a1ad0a16992d1e8172dabd[m
+Author: mathis.deconchat@gmail.com <mathis.deconchat@webinage.fr>
+Date:   Thu Dec 1 16:16:17 2022 +0100
+
+    Added content column for conversationMessages and lowercase Notification
+
+[33mcommit 78eb7c3623bf553cc3ecf9b0e581bcc7b081e756[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 1 12:19:38 2022 +0100
+
+    remove .env index
+
+[33mcommit 60a7f10e93443dd9f5d18b935b613858ec165935[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 1 12:09:54 2022 +0100
+
+    added full gitignore for Node.Js, removed .env index
+
+[33mcommit 1960e5c0e6815398c720011e83dca3fe8a299c34[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 1 11:47:01 2022 +0100
+
+    generated complete gitignore
+
+[33mcommit b08172ad20ce753882092537001c96497846f350[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 1 11:41:04 2022 +0100
+
+    partial configuration of AWS environment variables
+
+[33mcommit f17c645014cb8e96246ed38a5ee67ac28aca2fa1[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 1 11:16:59 2022 +0100
+
+    Database connection enabled
+
+[33mcommit fca1e929e2a3dd7de0b6a68de466172a8636489e[m[33m ([m[1;31morigin/prisma-installation[m[33m)[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 1 11:16:59 2022 +0100
+
+    Database connection enabled
+
+[33mcommit 6c41d65ceb4719e2e1e3ddec3d5dff33cd0f0c76[m
+Author: Julien FERAND <hello@julienferand.dev>
+Date:   Thu Dec 1 11:09:36 2022 +0100
+
+    FIX : avatarS3Key & coverPicS3Key now optional
+
+[33mcommit 32bb523e136a91c8abceff3a68cabaa0b6ed367c[m
+Author: Julien FERAND <hello@julienferand.dev>
+Date:   Thu Dec 1 10:20:47 2022 +0100
+
+    migration file following PRs
+
+[33mcommit f853ea4a1c26e649555b64d2cc996cfca60c8ae0[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 1 09:41:21 2022 +0100
+
+    commit before pulling prisma schema
+
+[33mcommit d27f0c29ec583c06658b7861eaf1e23653f2db26[m
+Author: Lucie Brackenier <lucie.brackenier@ynov.com>
+Date:   Thu Dec 1 09:41:21 2022 +0100
+
+    commit before pulling prisma schema

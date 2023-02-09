@@ -17,7 +17,7 @@ const createLike = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const getLikes = async (res: Response) => {
+const getLikes = async (req: Request, res: Response) => {
     
     let returnedResponse;
 

@@ -1,5 +1,5 @@
 import * as userService from "../services/user-service";
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 
 const createUser = async (req: Request, res: Response) => {
 
@@ -17,7 +17,7 @@ const createUser = async (req: Request, res: Response) => {
 
 /********************************************************************************/
 
-const getUsers = async (res: Response) => {
+const getUsers = async (req: Request, res: Response) => {
 
     let returnedResponse;
 
@@ -60,7 +60,7 @@ const getUserById = async (req: { params: { id: string } }, res: Response) => {
     }
 }
 
-const getConnectedUserById = async (res: Response) => {
+const getConnectedUserById = async (req: Request, res: Response) => {
     
     let returnedResponse;
     const userIdInResponseLocals = res.locals.user.userId;
