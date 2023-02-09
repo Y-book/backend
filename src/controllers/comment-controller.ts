@@ -9,12 +9,11 @@ const createComment = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await commentService.createComment(requestBody, userIdInResponseLocals);
+        res.status(201).send(returnedResponse);
     } 
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    
-    res.status(201).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -25,11 +24,11 @@ const getComments = async (req: Request, res: Response) => {
     
         try {
             returnedResponse = await commentService.getComments();
+            res.status(200).send(returnedResponse);
         }
-        catch (error) {
-            throw error;
+        catch (error: {message: string} | any) {
+            res.status(400).send(error.message);
         }
-        res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -40,11 +39,11 @@ const getCommentsByPostId = async (req: { params: { id: string; } }, res: Respon
 
     try {
         returnedResponse = await commentService.getCommentsByPostId(req);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -56,12 +55,11 @@ const updateComment = async (req: { params: { id: string; }; body: { text: strin
     
         try {
             returnedResponse = await commentService.updateComment(req, userIdInResponseLocals);
+            res.status(200).send(returnedResponse);
         }
-        catch (error) {
-            throw error;
+        catch (error: {message: string} | any) {
+            res.status(400).send(error.message);
         }
-    
-        res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -72,12 +70,17 @@ const deleteComment = async (req: Request, res: Response) => {
         
             try {
                 returnedResponse = await commentService.deleteComment(parseInt(req.params.id, 10));
+                res.status(200).send(returnedResponse);
             }
-            catch (error) {
-                throw error;
+            catch (error: {message: string} | any) {
+                res.status(400).send(error.message);
             }
-        
-            res.status(200).send(returnedResponse);
 }
 
-export { createComment, getComments, getCommentsByPostId, updateComment, deleteComment }
+export {
+    createComment,
+    getComments,
+    getCommentsByPostId,
+    updateComment,
+    deleteComment
+}

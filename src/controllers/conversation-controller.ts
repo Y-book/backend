@@ -12,8 +12,8 @@ const createConversation = async (req: Request, res: Response) => {
             returnedResponse = await conversationService.createConversation(userIdInResponseLocals, targetedUserId);
             res.status(201).send(returnedResponse);
         } 
-        catch (error) {
-            throw error;
+        catch (error: {message: string} | any) {
+            res.status(400).send(error.message);
         }
     }
 
@@ -26,11 +26,11 @@ const getConversations = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await conversationService.getConversations(userIdInResponseLocals);
+        res.status(200).send(returnedResponse);
     } 
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 const getConversationById = async (req: { params: { id: string } }, res: Response) => {
@@ -39,11 +39,11 @@ const getConversationById = async (req: { params: { id: string } }, res: Respons
 
     try {
         returnedResponse = await conversationService.getConversationById(req);
+        res.status(200).send(returnedResponse);
     } 
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -54,11 +54,11 @@ const deleteConversation = async (req: { params: { id: string } }, res: Response
 
     try {
         returnedResponse = await conversationService.deleteConversation(req);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 export {

@@ -11,8 +11,8 @@ const createMessage = async (req: Request, res: Response) => {
         returnedResponse = await messageService.createMessage(userIdInResponseLocals, requestBody);
         res.status(201).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
 }
 
@@ -27,8 +27,8 @@ const getMessagesPerConversation = async (req: Request, res: Response) => {
         returnedResponse = await messageService.getMessagesPerConversation(idInParameters);
         res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
 }
 
@@ -43,8 +43,8 @@ const deleteMessage = async (req: Request, res: Response) => {
         returnedResponse = await messageService.deleteMessage(idInParameters);
         res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
 }
 

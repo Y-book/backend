@@ -11,8 +11,8 @@ const createFriendship = async (req: Request, res: Response) => {
         returnedResponse = await friendshipsService.createFriendship(requestBody, userIdInResponseLocals);
         res.status(201).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
 }
 
@@ -27,8 +27,8 @@ const getFriendshipsByUserId = async (req: Request, res: Response) => {
         returnedResponse = await friendshipsService.getFriendshipsByUserId(userIdInResponseLocals);
         res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
 }
 
@@ -41,8 +41,8 @@ const getFriendships = async (req: Request, res: Response) => {
         returnedResponse = await friendshipsService.getFriendships();
         res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);;
     }
 }
 
@@ -52,11 +52,11 @@ const deleteFriendship = async (req: { params: { id: string; } }, res: Response)
 
     try {
         returnedResponse = await friendshipsService.deleteFriendship(req);
+        res.status(200).send(returnedResponse);
     } 
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 const updateFriendship = async (req: Request, res: Response) => {

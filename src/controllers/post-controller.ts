@@ -9,11 +9,11 @@ const createPost = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await postService.createPost(requestBody, userIdInResponseLocals);
+        res.status(201).send(returnedResponse);
     } 
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(201).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -24,11 +24,11 @@ const getPosts = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await postService.getPosts();
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 const getPostsByUserId = async (req: Request, res: Response) => {
@@ -38,11 +38,11 @@ const getPostsByUserId = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await postService.getPostsByUserId(userIdInResponseLocals);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 const getPostsByLikesId = async (req: Request, res: Response) => {
@@ -52,11 +52,11 @@ const getPostsByLikesId = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await postService.getPostsByLikesId(userIdInResponseLocals);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 const getPostsByCommentsId = async (req: Request, res: Response) => {
@@ -66,11 +66,11 @@ const getPostsByCommentsId = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await postService.getPostsByCommentsId(userIdInResponseLocals);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -82,12 +82,11 @@ const updatePost = async (req: { params: { id: string; }, body: { htmlContent: s
 
     try {
         returnedResponse = await postService.updatePost(req, userIdInResponseLocals);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -98,18 +97,19 @@ const deletePost = async (req: { params: { id: string; } }, res: Response) => {
 
     try {
         returnedResponse = await postService.deletePost(req);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-
-    res.status(200).send(returnedResponse);
 }
 
-export { createPost, 
-        getPosts, 
-        getPostsByUserId,
-        getPostsByLikesId,
-        getPostsByCommentsId,
-        updatePost,
-        deletePost }
+export { 
+    createPost, 
+    getPosts, 
+    getPostsByUserId,
+    getPostsByLikesId,
+    getPostsByCommentsId,
+    updatePost,
+    deletePost
+}

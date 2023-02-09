@@ -30,7 +30,6 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("socket id : ", socket.id)
 
   socket.on("conv", (data) => {
     console.log(`User ${socket.id} joined room ${data}`)

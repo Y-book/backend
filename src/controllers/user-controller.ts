@@ -8,11 +8,11 @@ const createUser = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await userService.createUser(requestBody);
+        res.status(201).send(returnedResponse);
     } 
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(201).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -23,11 +23,11 @@ const getUsers = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await userService.getUsers();
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -40,8 +40,8 @@ const getUsersWithResearch = async (req: Request, res: Response) => {
         returnedResponse = await userService.getUsersWithResearch(req);
         res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
 }
 
@@ -53,11 +53,11 @@ const getUserById = async (req: { params: { id: string } }, res: Response) => {
 
     try {
         returnedResponse = await userService.getUserById(req);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 const getConnectedUserById = async (req: Request, res: Response) => {
@@ -67,11 +67,11 @@ const getConnectedUserById = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await userService.getConnectedUserById(userIdInResponseLocals);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -82,12 +82,11 @@ const updateUser = async (req: { params: { id: string }, body: { firstname: stri
 
     try {
         returnedResponse = await userService.updateUser(req);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -98,12 +97,11 @@ const deleteUser = async (req: { params: { id: string } }, res: Response) => {
 
     try {
         returnedResponse = await userService.deleteUser(req);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    
-    res.status(200).send(returnedResponse);
 }
 
 export {
