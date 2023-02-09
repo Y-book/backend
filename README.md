@@ -1,4 +1,4 @@
-# Ybook DB Schema
+# Ybook
 
 The database uses PostgreSQL, the schemas are defined using [Prisma](https://www.prisma.io), they are "type-safe" and allow to use a generated Prisma client.
 
