@@ -65,6 +65,7 @@ const getUserById = async (receivedRequest: {params: {id: string}}) => {
     return foundUser
 }
 
+/********************************************************************************/
 
 const getConnectedUserById = async (userIdFromLocal: number) => {
 
@@ -86,6 +87,8 @@ const getConnectedUserById = async (userIdFromLocal: number) => {
 
     return foundUser
 }
+
+/********************************************************************************/
 
 const getUserByMail = async (mail: string) => {
 
