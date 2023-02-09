@@ -8,27 +8,26 @@ const createLike = async (req: Request, res: Response) => {
 
     try {
         returnedResponse = await postLikeServices.createLike(req, userIdInResponseLocals);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
 
-const getLikes = async (req: Request, res: Response) => {
+const getLikes = async (res: Response) => {
     
     let returnedResponse;
 
     try {
         returnedResponse = await postLikeServices.getLikes();
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -40,11 +39,11 @@ const getLikeByPostIdAndUserId = async (req: { params: { id: string } }, res: Re
 
     try {
         returnedResponse = await postLikeServices.getLikeByPostIdAndUserId(req, userIdInResponseLocals);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -55,11 +54,11 @@ const getLikeByPostId = async (req: { params: { id: string } }, res: Response) =
 
     try {
         returnedResponse = await postLikeServices.getLikeByPostId(req);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    res.status(200).send(returnedResponse);
 }
 
 /********************************************************************************/
@@ -70,12 +69,17 @@ const deleteLike = async (req: { params: { id: string } }, res: Response) => {
 
     try {
         returnedResponse = await postLikeServices.deleteLike(req);
+        res.status(200).send(returnedResponse);
     }
-    catch (error) {
-        throw error;
+    catch (error: {message: string} | any) {
+        res.status(400).send(error.message);
     }
-    
-    res.status(200).send(returnedResponse);
 }
 
-export { createLike, getLikes, getLikeByPostIdAndUserId, getLikeByPostId, deleteLike }
+export {
+    createLike,
+    getLikes,
+    getLikeByPostIdAndUserId,
+    getLikeByPostId,
+    deleteLike
+}
