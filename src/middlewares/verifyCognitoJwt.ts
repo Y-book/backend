@@ -26,12 +26,10 @@ const verifyCognito: RequestHandler = async (req, res, next) => {
     );
 
     res.locals.user = payload;
-    // console.log("Token is valid. Payload:", payload);
 
     let user;
     if (payload?.email) user = await getUserByMail(payload.email.toString());
 
-    //Added the variable userId in the response locals
     if (user) payload["userId"] = user.id;
 
     next();

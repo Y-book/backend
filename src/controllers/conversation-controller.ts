@@ -5,11 +5,11 @@ const createConversation = async (req: Request, res: Response) => {
     
         let returnedResponse;
         const userIdInResponseLocals = res.locals.user.userId
-        let requestBody = req.body;
+        let targetedUserId = req.body.toId;
 
     
         try {
-            returnedResponse = await conversationService.createConversation(userIdInResponseLocals, requestBody);
+            returnedResponse = await conversationService.createConversation(userIdInResponseLocals, targetedUserId);
             res.status(201).send(returnedResponse);
         } 
         catch (error) {

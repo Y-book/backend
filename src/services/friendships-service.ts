@@ -1,8 +1,9 @@
 import { PrismaClient } from "@prisma/client";
+import * as conversationService from "./conversation-service";
 
 const prisma = new PrismaClient();
 
-const createFriendship = async (requestBody: {toId: string}, userIdFromLocal: number) => {
+const createFriendship = async (requestBody: { toId: string }, userIdFromLocal: number) => {
 
     let createdFriendship;
 
@@ -62,7 +63,6 @@ const getFriendshipsByUserId = async (userIdFromLocal: number) => {
         )
 
         return findFriendshipsRequest;
-
     }
     catch (error) {
         throw error
@@ -86,8 +86,10 @@ const getFriendships = async () => {
     return foundFriendships
 }
 
-const deleteFriendship = async (receivedRequest: {params: {id: string}}) => {
-        let deletedFriendship;
+/********************************************************************************/
+
+const deleteFriendship = async (receivedRequest: { params: { id: string } }) => {
+    let deletedFriendship;
 
     try {
         const idInParameters = parseInt(receivedRequest.params.id)
@@ -107,19 +109,15 @@ const deleteFriendship = async (receivedRequest: {params: {id: string}}) => {
 
 /********************************************************************************/
 
-const updateFriendship = async (receivedRequest: {body: {fromId: number, status: string | any}}, userIdFromLocal: number) => {
+const updateFriendship = async (receivedRequest: { body: { fromId: number, status: string | any } }, userIdFromLocal: number) => {
     let updatedFriendship;
 
     try {
         const updatedFriendshipRequest = await prisma.friendship.updateMany({
             where: {
                 AND: [
-                    {
-                        toId: userIdFromLocal
-                    },
-                    {
-                        fromId: receivedRequest.body.fromId
-                    }
+                    { toId: userIdFromLocal },
+                    { fromId: receivedRequest.body.fromId }
                 ]
             },
             data: {
@@ -133,40 +131,13 @@ const updateFriendship = async (receivedRequest: {body: {fromId: number, status:
         const findModifiedFriendship = await prisma.friendship.findMany({
             where: {
                 AND: [
-                    {
-                        toId: userIdFromLocal
-                    },
-                    {
-                        fromId: receivedRequest.body.fromId
-                    }
+                    { toId: userIdFromLocal },
+                    { fromId: receivedRequest.body.fromId }
                 ]
             },
         })
 
-        const findExistingConversation = await prisma.conversation.findMany({
-            where: {
-                OR: [{
-                    AND: [
-                        {
-                            fromId: userIdFromLocal
-                        },
-                        {
-                            toId: receivedRequest.body.fromId
-                        }
-                    ]
-                },
-                {
-                    AND: [
-                        {
-                            fromId: receivedRequest.body.fromId
-                        },
-                        {
-                            toId: userIdFromLocal
-                        }
-                    ]
-                }]
-            }
-        })
+        const findExistingConversation = await conversationService.findExistingConversationBetweenUsers(userIdFromLocal, receivedRequest.body.fromId);
 
         //prisma findMany returns an array
         if (findExistingConversation.length > 0) {
@@ -175,14 +146,8 @@ const updateFriendship = async (receivedRequest: {body: {fromId: number, status:
 
         //Check if the status is ACCEPTED, if so, create a conversation
         if (findModifiedFriendship[0].status === "ACCEPTED") {
-            await prisma.conversation.create({
-                data: {
-                    fromId: userIdFromLocal,
-                    toId: findModifiedFriendship[0].fromId,
-                }
-            })
+            await conversationService.createConversation(userIdFromLocal, receivedRequest.body.fromId);
         }
-
 
     } catch (error) {
         throw error

@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const createConversation = async (userIdFromLocal: number, requestBody: {toId: number} ) => {
+const createConversation = async (userIdFromLocal: number, toId: number ) => {
     let createdConversation;
 
     try {
@@ -10,7 +10,7 @@ const createConversation = async (userIdFromLocal: number, requestBody: {toId: n
         const conversationToCreate = await prisma.conversation.create({
             data: {
                 fromId: userIdFromLocal,
-                toId: requestBody.toId,
+                toId: toId,
             },
         })
         createdConversation = conversationToCreate
@@ -76,6 +76,46 @@ const getConversations = async (userIdFromLocal: number) => {
     }
     return foundConversations
 }
+
+/********************************************************************************/
+
+const findExistingConversationBetweenUsers = async (userIdFromLocal: number, potentialFriendId: number ) => {
+
+    let findExistingConversation;
+
+    try {
+    findExistingConversation = await prisma.conversation.findMany({
+        where: {
+            OR: [{
+                AND: [
+                    {
+                        fromId: userIdFromLocal
+                    },
+                    {
+                        toId: potentialFriendId
+                    }
+                ]
+            },
+            {
+                AND: [
+                    {
+                        fromId: potentialFriendId
+                    },
+                    {
+                        toId: userIdFromLocal
+                    }
+                ]
+            }]
+        }
+    })
+} catch (error) {
+    throw error
+}
+
+    return findExistingConversation
+}
+
+/********************************************************************************/
 
 const getConversationById = async (receivedRequest: {params: {id: string}}) => {
     let foundConversation;
@@ -155,6 +195,7 @@ const deleteConversation = async (receivedRequest: {params: {id: string}}) => {
 export {
     createConversation,
     getConversations,
+    findExistingConversationBetweenUsers,
     getConversationById,
     deleteConversation,
 }
