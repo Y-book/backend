@@ -26,7 +26,6 @@ const verifyCognito: RequestHandler = async (req, res, next) => {
     );
 
     res.locals.user = payload;
-    // console.log("Token is valid. Payload:", payload);
 
     let user;
     if (payload?.email) user = await getUserByMail(payload.email.toString());
